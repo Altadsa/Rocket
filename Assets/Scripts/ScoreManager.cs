@@ -10,7 +10,7 @@ namespace Rocket
 
         float score;
 
-        int multiplier = 60;
+        int multiplier = 100;
 
         // Use this for initialization
         void Start()
@@ -21,7 +21,7 @@ namespace Rocket
         // Update is called once per frame
         void Update()
         {
-            score += Time.deltaTime;
+            score += multiplier * Time.deltaTime;
             scoreText.text = score.ToString();
             Debug.Log(score);
         }

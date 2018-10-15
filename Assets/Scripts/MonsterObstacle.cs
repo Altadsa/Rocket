@@ -4,10 +4,11 @@ namespace Rocket
 {
     public class MonsterObstacle : MonoBehaviour
     {
+
         Rigidbody2D monsterRB;
 
         float speed = 100.0f;
-
+        public float downspeed;
         bool movingRight;
 
         // Use this for initialization
@@ -26,7 +27,6 @@ namespace Rocket
         private void FixedUpdate()
         {
             MoveMonster();
-            
         }
 
         private void MoveMonster()
