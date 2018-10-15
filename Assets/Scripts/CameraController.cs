@@ -8,6 +8,8 @@ namespace Rocket
         [SerializeField]
         Transform followTarget;
 
+        public float padding;
+
         // Use this for initialization
         void Start()
         {
@@ -21,7 +23,7 @@ namespace Rocket
             {
                 return;
             }
-            transform.position = new Vector3(transform.position.x, followTarget.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, followTarget.position.y + padding, transform.position.z);
         }
     } 
 }

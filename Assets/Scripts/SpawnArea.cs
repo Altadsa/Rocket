@@ -33,7 +33,8 @@ namespace Rocket
             Vector2[,] spawnPoints = new Vector2[3,5];
             float xPadding = 1.0f;
             float yPadding = 2.0f;
-            Vector2 vectPos = GetComponent<BoxCollider2D>().bounds.max;
+            Vector2 startPos = GetComponent<BoxCollider2D>().bounds.max;
+            Vector2 vectPos = startPos;
 
             vectPos = vectPos - new Vector2(xPadding, yPadding);
             for (int x = 0; x < 3; x++)
@@ -44,7 +45,7 @@ namespace Rocket
                     Vector2 newVectPos = new Vector2(vectPos.x - xPadding, vectPos.y);
                     vectPos = newVectPos;
                 }
-                vectPos = new Vector2(vectPos.x, vectPos.y - yPadding);
+                vectPos = new Vector2(startPos.x, vectPos.y - yPadding);
             }
 
             return spawnPoints;

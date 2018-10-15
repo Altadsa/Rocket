@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 2049096777}
+  padding: 3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
