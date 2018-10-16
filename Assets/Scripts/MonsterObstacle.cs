@@ -4,11 +4,14 @@ namespace Rocket
 {
     public class MonsterObstacle : MonoBehaviour
     {
+        [SerializeField]
+        Transform leftEdge;
+
+        [SerializeField]
+        Transform rightEdge;
 
         Rigidbody2D monsterRB;
-
         float speed = 100.0f;
-        public float downspeed;
         bool movingRight;
 
         // Use this for initialization
@@ -16,12 +19,6 @@ namespace Rocket
         {
             movingRight = true;
             monsterRB = GetComponent<Rigidbody2D>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         private void FixedUpdate()
@@ -47,11 +44,6 @@ namespace Rocket
             if (rocketHealth)
             {
                 rocketHealth.DestroyRocket();
-            }
-
-            if (collision.GetComponent<ScreenEdge>())
-            {
-                movingRight = !movingRight;
             }
         }
     } 

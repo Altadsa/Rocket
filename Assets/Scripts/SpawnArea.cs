@@ -78,8 +78,6 @@ namespace Rocket
                 SpawnArea spawnArea = newSpawnArea.GetComponent<SpawnArea>();
                 newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
             }
-
-            Debug.Log("Spawning a new Spawn Area..");
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -88,7 +86,6 @@ namespace Rocket
 
             if (rocketHealth)
             {
-                Debug.Log("Destroying Myself");
                 DestroyChildren();
                 Destroy(gameObject);
             }
