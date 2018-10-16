@@ -22,7 +22,7 @@ namespace Rocket
         void Update()
         {
             score += multiplier * Time.deltaTime;
-            scoreText.text = score.ToString();
+            scoreText.text = Mathf.RoundToInt(score).ToString();
             Debug.Log(score);
         }
     } 

@@ -17,7 +17,7 @@ namespace Rocket
 
         private void FixedUpdate()
         {
-            obstacleRB.AddForce(Vector2.down * speed * Time.deltaTime);
+            //obstacleRB.AddForce(Vector2.down * speed * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

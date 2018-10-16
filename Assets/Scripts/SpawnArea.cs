@@ -14,7 +14,16 @@ namespace Rocket
 
         private void Start()
         {
+            DeleteDuplicateChildrenIfExists();
             GenerateObstacles(obstaclePrefab);
+        }
+
+        private void DeleteDuplicateChildrenIfExists()
+        {
+            if (transform.childCount > 0)
+            {
+                DestroyChildren();
+            }
         }
 
         private void GenerateObstacles(GameObject obstaclesToGenerate)
@@ -22,7 +31,7 @@ namespace Rocket
             Vector2[,] spawnPoints = GenerateSpawnPoints();
             for (int i = 0; i < 3; i++)
             {
-                GameObject obstacleInstance = Instantiate(obstaclePrefab);
+                GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
                 obstacleInstance.transform.parent = gameObject.transform;
                 obstacleInstance.transform.position = spawnPoints[Random.Range(0, 2), Random.Range(0, 4)];
             }
@@ -51,13 +60,23 @@ namespace Rocket
             return spawnPoints;
         }
 
+        private void DestroyChildren()
+        {
+            foreach (Transform child in gameObject.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             RocketHealth rocketHealth = collision.GetComponent<RocketHealth>();
 
             if (rocketHealth)
             {
-                Instantiate(spawnAreaPrefab).transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
+                GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
+                SpawnArea spawnArea = newSpawnArea.GetComponent<SpawnArea>();
+                newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
             }
 
             Debug.Log("Spawning a new Spawn Area..");
@@ -70,6 +89,7 @@ namespace Rocket
             if (rocketHealth)
             {
                 Debug.Log("Destroying Myself");
+                DestroyChildren();
                 Destroy(gameObject);
             }
         }

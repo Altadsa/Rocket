@@ -78,3 +78,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAreaPrefab: {fileID: 1877725160924638}
+  obstaclePrefab: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
+    type: 2}
