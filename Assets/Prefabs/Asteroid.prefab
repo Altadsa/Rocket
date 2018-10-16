@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114108520381953968}
   - component: {fileID: 50971900765233088}
   - component: {fileID: 58148828962389802}
-  - component: {fileID: 95615638042081162}
+  - component: {fileID: 95368405955054164}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -108,7 +108,7 @@ CircleCollider2D:
   m_Offset: {x: -0.01, y: 0}
   serializedVersion: 2
   m_Radius: 0.36795318
---- !u!95 &95615638042081162
+--- !u!95 &95368405955054164
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
