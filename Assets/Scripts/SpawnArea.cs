@@ -14,6 +14,10 @@ namespace Rocket
 
         int maxColumns = 3;
         int maxRows = 5;
+        int maxObstaclesPerArea = 5;
+
+        float xPadding = 1.0f;
+        float yPadding = 2.0f;
 
         private void Start()
         {
@@ -31,28 +35,28 @@ namespace Rocket
 
         private void GenerateObstacles(GameObject obstaclesToGenerate)
         {
-            Vector2[,] spawnPoints = GenerateSpawnPoints();
-            for (int i = 0; i < 3; i++)
+            Vector2[,] spawnArea = GenerateSpawnPoints();
+            for (int i = 0; i < maxObstaclesPerArea; i++)
             {
-                GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
-                obstacleInstance.transform.parent = gameObject.transform;
-                obstacleInstance.transform.position = spawnPoints[Random.Range(0, maxColumns), Random.Range(0, maxRows)];
+                InstantiateObstacleWithinArea(spawnArea);
             }
+        }
+
+        private void InstantiateObstacleWithinArea(Vector2[,] spawnPoints)
+        {
+            GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
+            obstacleInstance.transform.parent = gameObject.transform;
+            obstacleInstance.transform.position = spawnPoints[Random.Range(0, maxColumns), Random.Range(0, maxRows)];
         }
 
         private Vector2[,] GenerateSpawnPoints()
         {
-
             Vector2[,] spawnPoints = new Vector2[maxColumns, maxRows];
-            float xPadding = 1.0f;
-            float yPadding = 2.0f;
 
             Bounds bounds = GetComponent<BoxCollider2D>().bounds;
 
             Vector2 startPos = new Vector2(bounds.min.x, bounds.max.y);
             Vector2 vectPos = new Vector2(startPos.x + xPadding, startPos.y - yPadding);
-
-
 
             for (int x = 0; x < maxColumns; x++)
             {
@@ -61,7 +65,6 @@ namespace Rocket
                     spawnPoints[x, y] = vectPos;
                     Vector2 newVectPos = new Vector2(vectPos.x + xPadding, vectPos.y);
                     vectPos = newVectPos;
-                    Debug.Log(newVectPos);
                 }
                 vectPos = new Vector2(startPos.x + xPadding, vectPos.y - yPadding);
             }
@@ -83,10 +86,14 @@ namespace Rocket
 
             if (rocketHealth)
             {
-                GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
-                SpawnArea spawnArea = newSpawnArea.GetComponent<SpawnArea>();
-                newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
+                InstantiateNewAreaAndSetPosition();
             }
+        }
+
+        private void InstantiateNewAreaAndSetPosition()
+        {
+            GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
+            newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -95,9 +102,15 @@ namespace Rocket
 
             if (rocketHealth)
             {
-                DestroyChildren();
-                Destroy(gameObject);
+                DelayAreaDestruction(2.0f);
             }
+        }
+
+        IEnumerator DelayAreaDestruction(float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            DestroyChildren();
+            Destroy(gameObject);
         }
     }
 }
