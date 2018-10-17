@@ -12,6 +12,9 @@ namespace Rocket
         [SerializeField]
         GameObject obstaclePrefab;
 
+        int maxColumns = 3;
+        int maxRows = 5;
+
         private void Start()
         {
             DeleteDuplicateChildrenIfExists();
@@ -33,28 +36,34 @@ namespace Rocket
             {
                 GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
                 obstacleInstance.transform.parent = gameObject.transform;
-                obstacleInstance.transform.position = spawnPoints[Random.Range(0, 2), Random.Range(0, 4)];
+                obstacleInstance.transform.position = spawnPoints[Random.Range(0, maxColumns), Random.Range(0, maxRows)];
             }
         }
 
         private Vector2[,] GenerateSpawnPoints()
         {
-            Vector2[,] spawnPoints = new Vector2[3,5];
+
+            Vector2[,] spawnPoints = new Vector2[maxColumns, maxRows];
             float xPadding = 1.0f;
             float yPadding = 2.0f;
-            Vector2 startPos = GetComponent<BoxCollider2D>().bounds.max;
-            Vector2 vectPos = startPos;
 
-            vectPos = vectPos - new Vector2(xPadding, yPadding);
-            for (int x = 0; x < 3; x++)
+            Bounds bounds = GetComponent<BoxCollider2D>().bounds;
+
+            Vector2 startPos = new Vector2(bounds.min.x, bounds.max.y);
+            Vector2 vectPos = new Vector2(startPos.x + xPadding, startPos.y - yPadding);
+
+
+
+            for (int x = 0; x < maxColumns; x++)
             {
-                for (int y = 0; y < 5; y++)
+                for (int y = 0; y < maxRows; y++)
                 {
                     spawnPoints[x, y] = vectPos;
-                    Vector2 newVectPos = new Vector2(vectPos.x - xPadding, vectPos.y);
+                    Vector2 newVectPos = new Vector2(vectPos.x + xPadding, vectPos.y);
                     vectPos = newVectPos;
+                    Debug.Log(newVectPos);
                 }
-                vectPos = new Vector2(startPos.x, vectPos.y - yPadding);
+                vectPos = new Vector2(startPos.x + xPadding, vectPos.y - yPadding);
             }
 
             return spawnPoints;
@@ -90,5 +99,5 @@ namespace Rocket
                 Destroy(gameObject);
             }
         }
-    } 
+    }
 }
