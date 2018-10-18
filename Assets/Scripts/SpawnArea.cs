@@ -10,7 +10,13 @@ namespace Rocket
         GameObject spawnAreaPrefab;
 
         [SerializeField]
-        GameObject obstaclePrefab;
+        GameObject asteroidPrefab;
+
+        [SerializeField]
+        GameObject monsterPrefab;
+
+        [SerializeField]
+        GameObject starPrefab;
 
         [SerializeField]
         GameObject itemPrefab;
@@ -19,7 +25,7 @@ namespace Rocket
 
         int maxColumns = 5;
         int maxRows = 5;
-        int maxObstaclesPerArea = 3;
+        int maxObstaclesPerArea = 4;
 
         int randomColumnIndex, randomRowIndex;
 
@@ -32,11 +38,11 @@ namespace Rocket
         {
             DeleteDuplicateChildrenIfExists();
             spawnArea = GenerateSpawnPoints();
-            GenerateObstacles(obstaclePrefab);
-            GenerateItems(itemPrefab);
+            InstantiateObjectAndMarkRow(monsterPrefab);
+            GenerateObstacles(asteroidPrefab);
+            GenerateItems(starPrefab, 3);
+            GenerateItems(itemPrefab, 20);
         }
-
-
 
         private void Update()
         {
@@ -51,9 +57,9 @@ namespace Rocket
             }
         }
 
-        private void GenerateItems(GameObject itemToGenerate)
+        private void GenerateItems(GameObject itemToGenerate, int spawnProbability)
         {
-            if (Random.Range(0, 3) == 0)
+            if (Random.Range(0, spawnProbability) == 0)
             {
                 InstantiateGameObjectWithinArea(itemToGenerate);
             }
@@ -88,6 +94,17 @@ namespace Rocket
             objectInstance.transform.parent = gameObject.transform;
             objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
             spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
+        }
+
+        private void InstantiateObjectAndMarkRow(GameObject objectToInstantiate)
+        {
+            GameObject objectInstance = Instantiate(objectToInstantiate, transform);
+            objectInstance.transform.parent = gameObject.transform;
+            objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
+            for (int i = 0; i < maxRows; i++)
+            {
+                spawnArea[randomColumnIndex, i] = Vector2.zero; 
+            }
         }
 
         private Vector2[,] GenerateSpawnPoints()

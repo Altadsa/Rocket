@@ -26,15 +26,18 @@ namespace Rocket
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
-                if (ammo > 0)
-                {
-                    Instantiate(projectilePrefab).transform.position = gameObject.transform.position;
-                    ammo--;
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
+
+                Instantiate(projectilePrefab).transform.position = gameObject.transform.position;
+                UpdateAmmo();
+            }
+        }
+
+        private void UpdateAmmo()
+        {
+            ammo--;
+            if (ammo == 0)
+            {
+                Destroy(gameObject);
             }
         }
 
@@ -42,5 +45,5 @@ namespace Rocket
         {
             ammo += AMMO_PER_ROUND;
         }
-    } 
+    }
 }
