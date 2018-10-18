@@ -17,7 +17,7 @@ namespace Rocket
 
         public float speed;
 
-        int maxColumns = 3;
+        int maxColumns = 5;
         int maxRows = 5;
         int maxObstaclesPerArea = 3;
 
@@ -77,7 +77,10 @@ namespace Rocket
                 GameObject objectInstance = Instantiate(objectToInstantiate, transform);
                 objectInstance.transform.parent = gameObject.transform;
                 objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
-                spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
+                for (int i = 0; i < maxRows; i++)
+                {
+                    spawnArea[randomColumnIndex, i] = Vector2.zero; 
+                }
 
             }
             else
