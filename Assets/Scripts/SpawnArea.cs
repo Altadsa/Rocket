@@ -12,6 +12,8 @@ namespace Rocket
         [SerializeField]
         GameObject obstaclePrefab;
 
+        public float speed;
+
         int maxColumns = 3;
         int maxRows = 5;
         int maxObstaclesPerArea = 5;
@@ -23,6 +25,11 @@ namespace Rocket
         {
             DeleteDuplicateChildrenIfExists();
             GenerateObstacles(obstaclePrefab);
+        }
+
+        private void Update()
+        {
+            transform.position += Vector3.down * speed * Time.deltaTime;
         }
 
         private void DeleteDuplicateChildrenIfExists()
@@ -44,9 +51,20 @@ namespace Rocket
 
         private void InstantiateObstacleWithinArea(Vector2[,] spawnPoints)
         {
-            GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
-            obstacleInstance.transform.parent = gameObject.transform;
-            obstacleInstance.transform.position = spawnPoints[Random.Range(0, maxColumns), Random.Range(0, maxRows)];
+            int columnIndex = Random.Range(0, maxColumns);
+            int rowIndex = Random.Range(0, maxRows);
+
+            if (spawnPoints[columnIndex, rowIndex] != Vector2.zero)
+            {
+                GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
+                obstacleInstance.transform.parent = gameObject.transform;
+                obstacleInstance.transform.position = spawnPoints[columnIndex, rowIndex];
+                spawnPoints[columnIndex, rowIndex] = Vector2.zero;
+            }
+            else
+            {
+                InstantiateObstacleWithinArea(spawnPoints);
+            }
         }
 
         private Vector2[,] GenerateSpawnPoints()
@@ -102,15 +120,9 @@ namespace Rocket
 
             if (rocketHealth)
             {
-                DelayAreaDestruction(2.0f);
+                DestroyChildren();
+                Destroy(gameObject);
             }
-        }
-
-        IEnumerator DelayAreaDestruction(float delayTime)
-        {
-            yield return new WaitForSeconds(delayTime);
-            DestroyChildren();
-            Destroy(gameObject);
         }
     }
 }

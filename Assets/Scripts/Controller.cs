@@ -24,15 +24,15 @@ namespace Rocket
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                rocketRB.velocity = new Vector2(1.0f * travelSpeed * Time.deltaTime, 1.0f * travelSpeed * Time.deltaTime);
+                rocketRB.velocity = new Vector2(1.0f * travelSpeed * Time.deltaTime, 0.0f);
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                rocketRB.velocity = new Vector2(-1.0f * travelSpeed * Time.deltaTime, 1.0f * travelSpeed * Time.deltaTime);
+                rocketRB.velocity = new Vector2(-1.0f * travelSpeed * Time.deltaTime, 0.0f);
             }
             else
             {
-                rocketRB.velocity = Vector2.up * travelSpeed * Time.deltaTime;
+                rocketRB.velocity = Vector2.zero;
             }
         }
     } 
