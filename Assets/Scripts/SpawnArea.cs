@@ -12,20 +12,31 @@ namespace Rocket
         [SerializeField]
         GameObject obstaclePrefab;
 
+        [SerializeField]
+        GameObject currencyPrefab;
+
         public float speed;
 
         int maxColumns = 3;
         int maxRows = 5;
         int maxObstaclesPerArea = 5;
 
+        int randomColumnIndex, randomRowIndex;
+
         float xPadding = 1.0f;
         float yPadding = 2.0f;
+
+        Vector2[,] spawnArea;
 
         private void Start()
         {
             DeleteDuplicateChildrenIfExists();
+            spawnArea = GenerateSpawnPoints();
             GenerateObstacles(obstaclePrefab);
+            GenerateItems(currencyPrefab);
         }
+
+
 
         private void Update()
         {
@@ -40,30 +51,37 @@ namespace Rocket
             }
         }
 
-        private void GenerateObstacles(GameObject obstaclesToGenerate)
+        private void GenerateItems(GameObject itemToGenerate)
         {
-            Vector2[,] spawnArea = GenerateSpawnPoints();
-            for (int i = 0; i < maxObstaclesPerArea; i++)
+            if (Random.Range(0,2) == 1)
             {
-                InstantiateObstacleWithinArea(spawnArea);
+                InstantiateGameObjectWithinArea(itemToGenerate);
             }
         }
 
-        private void InstantiateObstacleWithinArea(Vector2[,] spawnPoints)
+        private void GenerateObstacles(GameObject obstaclesToGenerate)
         {
-            int columnIndex = Random.Range(0, maxColumns);
-            int rowIndex = Random.Range(0, maxRows);
-
-            if (spawnPoints[columnIndex, rowIndex] != Vector2.zero)
+            for (int i = 0; i < maxObstaclesPerArea; i++)
             {
-                GameObject obstacleInstance = Instantiate(obstaclePrefab, transform);
-                obstacleInstance.transform.parent = gameObject.transform;
-                obstacleInstance.transform.position = spawnPoints[columnIndex, rowIndex];
-                spawnPoints[columnIndex, rowIndex] = Vector2.zero;
+                InstantiateGameObjectWithinArea(obstaclesToGenerate);
+            }
+        }
+
+        private void InstantiateGameObjectWithinArea(GameObject objectToInstantiate)
+        {
+            randomColumnIndex = Random.Range(0, maxColumns);
+            randomRowIndex = Random.Range(0, maxRows);
+
+            if (spawnArea[randomColumnIndex, randomRowIndex] != Vector2.zero)
+            {
+                GameObject objectInstance = Instantiate(objectToInstantiate, transform);
+                objectInstance.transform.parent = gameObject.transform;
+                objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
+                spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
             }
             else
             {
-                InstantiateObstacleWithinArea(spawnPoints);
+                InstantiateGameObjectWithinArea(objectToInstantiate);
             }
         }
 

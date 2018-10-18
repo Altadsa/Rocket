@@ -5835,6 +5835,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114903000764113674, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198,
+        type: 2}
+      propertyPath: currencyPrefab
+      value: 
+      objectReference: {fileID: 1118462976827554, guid: c3e9108332abcbd4eb08795b4a956b00,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198, type: 2}
   m_IsPrefabAsset: 0
