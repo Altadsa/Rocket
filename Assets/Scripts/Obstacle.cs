@@ -4,25 +4,19 @@ using UnityEngine;
 
 namespace Rocket
 {
-    public class Obstacle : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public abstract class Obstacle : MonoBehaviour
     {
-        float speed = 100.0f;
+        protected Rigidbody2D obstacleRB;
 
-        Rigidbody2D obstacleRB;
-
-        private void Start()
+        protected void Start()
         {
-            obstacleRB = GetComponent<Rigidbody2D>();
+           obstacleRB = GetComponent<Rigidbody2D>();
         }
 
-        private void FixedUpdate()
+        protected void OnTriggerEnter2D(Collider2D collision)
         {
-            //obstacleRB.AddForce(Vector2.down * speed * Time.deltaTime);
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            RocketHealth rocket = collision.GetComponent<RocketHealth>();
+            Rocket rocket = collision.GetComponent<Rocket>();
             if (rocket)
             {
                 rocket.DestroyRocket();

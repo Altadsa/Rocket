@@ -8,11 +8,8 @@ namespace Rocket
     {
         public float travelSpeed;
 
-        public float downspeed;
-
         Rigidbody2D rocketRB;
 
-        // Use this for initialization
         void Start()
         {
             rocketRB = GetComponent<Rigidbody2D>();
@@ -20,8 +17,11 @@ namespace Rocket
 
         private void FixedUpdate()
         {
-            //rocketRB.AddForce(Vector2.up * travelSpeed * Time.deltaTime);
+            MoveUsingArrowKeys();
+        }
 
+        private void MoveUsingArrowKeys()
+        {
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 rocketRB.velocity = new Vector2(1.0f * travelSpeed * Time.deltaTime, 0.0f);

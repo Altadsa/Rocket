@@ -4,20 +4,20 @@ using UnityEngine;
 
 namespace Rocket
 {
-    public class Star : MonoBehaviour
+    public class Item : MonoBehaviour
     {
+        [SerializeField]
+        GameObject item;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //TODO Add separate Script for Handling Collecting Items
-            Rocket rocketHealth = collision.GetComponent<Rocket>();
-
-            if (rocketHealth)
+            Rocket rocket = collision.GetComponent<Rocket>();
+            if (rocket)
             {
-                rocketHealth.AddStar();
+                rocket.AddItem(item);
                 Destroy(gameObject);
             }
         }
+    }
 
-    } 
 }

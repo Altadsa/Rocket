@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Rocket
 {
-    public class ScreenEdge : MonoBehaviour
+    public class StaticObstacle : Obstacle
     {
-
+        
     } 
 }

@@ -80,4 +80,5 @@ MonoBehaviour:
   spawnAreaPrefab: {fileID: 1877725160924638}
   obstaclePrefab: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
     type: 2}
+  itemPrefab: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152, type: 2}
   speed: 5

@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace Rocket
 {
-    public class RocketHealth : MonoBehaviour
+    public class Rocket : MonoBehaviour
     {
         [SerializeField]
         PlayerPreferences playerPreferences;
 
         [SerializeField]
         LevelManager levelManager;
+
+        [SerializeField]
+        StringConstant mainMenuName;
 
         int starsCollected = 0;
 
@@ -19,7 +22,13 @@ namespace Rocket
             Destroy(gameObject);
             playerPreferences.AddStars(starsCollected);
             starsCollected = 0;
-            levelManager.LoadLevel("Menu");
+            levelManager.LoadLevel(mainMenuName);
+        }
+
+        public void AddItem(GameObject itemToAdd)
+        {
+            GameObject itemInstance = Instantiate(itemToAdd);
+            itemInstance.transform.parent = transform; 
         }
 
         public void AddStar()

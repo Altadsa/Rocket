@@ -15,9 +15,9 @@ namespace Rocket
             Time.timeScale = 1;
         }
 
-        public void LoadLevel(string name)
+        public void LoadLevel(StringConstant levelName)
         {
-            SceneManager.LoadScene(name);
+            SceneManager.LoadScene(levelName.Value());
         }
 
     } 

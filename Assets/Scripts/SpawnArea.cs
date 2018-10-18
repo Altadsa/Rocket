@@ -13,13 +13,13 @@ namespace Rocket
         GameObject obstaclePrefab;
 
         [SerializeField]
-        GameObject currencyPrefab;
+        GameObject itemPrefab;
 
         public float speed;
 
         int maxColumns = 3;
         int maxRows = 5;
-        int maxObstaclesPerArea = 5;
+        int maxObstaclesPerArea = 3;
 
         int randomColumnIndex, randomRowIndex;
 
@@ -33,7 +33,7 @@ namespace Rocket
             DeleteDuplicateChildrenIfExists();
             spawnArea = GenerateSpawnPoints();
             GenerateObstacles(obstaclePrefab);
-            GenerateItems(currencyPrefab);
+            GenerateItems(itemPrefab);
         }
 
 
@@ -53,7 +53,7 @@ namespace Rocket
 
         private void GenerateItems(GameObject itemToGenerate)
         {
-            if (Random.Range(0,2) == 1)
+            if (Random.Range(0, 10) == 1)
             {
                 InstantiateGameObjectWithinArea(itemToGenerate);
             }
@@ -78,6 +78,7 @@ namespace Rocket
                 objectInstance.transform.parent = gameObject.transform;
                 objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
                 spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
+
             }
             else
             {
@@ -118,7 +119,7 @@ namespace Rocket
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            RocketHealth rocketHealth = collision.GetComponent<RocketHealth>();
+            Rocket rocketHealth = collision.GetComponent<Rocket>();
 
             if (rocketHealth)
             {
@@ -134,7 +135,7 @@ namespace Rocket
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            RocketHealth rocketHealth = collision.GetComponent<RocketHealth>();
+            Rocket rocketHealth = collision.GetComponent<Rocket>();
 
             if (rocketHealth)
             {
