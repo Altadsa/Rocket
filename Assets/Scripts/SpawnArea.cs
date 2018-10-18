@@ -53,7 +53,7 @@ namespace Rocket
 
         private void GenerateItems(GameObject itemToGenerate)
         {
-            if (Random.Range(0, 20) == 0)
+            if (Random.Range(0, 3) == 0)
             {
                 InstantiateGameObjectWithinArea(itemToGenerate);
             }
@@ -74,19 +74,20 @@ namespace Rocket
 
             if (spawnArea[randomColumnIndex, randomRowIndex] != Vector2.zero)
             {
-                GameObject objectInstance = Instantiate(objectToInstantiate, transform);
-                objectInstance.transform.parent = gameObject.transform;
-                objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
-                for (int i = 0; i < maxRows; i++)
-                {
-                    spawnArea[randomColumnIndex, i] = Vector2.zero; 
-                }
-
+                InstantiateObjectAndMarkPosition(objectToInstantiate);
             }
             else
             {
                 InstantiateGameObjectWithinArea(objectToInstantiate);
             }
+        }
+
+        private void InstantiateObjectAndMarkPosition(GameObject objectToInstantiate)
+        {
+            GameObject objectInstance = Instantiate(objectToInstantiate, transform);
+            objectInstance.transform.parent = gameObject.transform;
+            objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
+            spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
         }
 
         private Vector2[,] GenerateSpawnPoints()
