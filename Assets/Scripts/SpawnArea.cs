@@ -53,7 +53,7 @@ namespace Rocket
 
         private void GenerateItems(GameObject itemToGenerate)
         {
-            if (Random.Range(0, 10) == 1)
+            if (Random.Range(0, 20) == 0)
             {
                 InstantiateGameObjectWithinArea(itemToGenerate);
             }

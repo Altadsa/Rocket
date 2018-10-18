@@ -8,7 +8,9 @@ namespace Rocket
         [SerializeField]
         GameObject projectilePrefab;
 
-        int ammo = 10;
+        const int AMMO_PER_ROUND = 10;
+
+        private int ammo = 10;
 
         // Update is called once per frame
         void Update()
@@ -34,6 +36,11 @@ namespace Rocket
                     Destroy(gameObject);
                 }
             }
+        }
+
+        public void AddAmmo()
+        {
+            ammo += AMMO_PER_ROUND;
         }
     } 
 }

@@ -27,8 +27,15 @@ namespace Rocket
 
         public void AddItem(GameObject itemToAdd)
         {
-            GameObject itemInstance = Instantiate(itemToAdd);
-            itemInstance.transform.parent = transform; 
+            if (!GetComponentInChildren<LaserCannon>())
+            {
+                GameObject itemInstance = Instantiate(itemToAdd);
+                itemInstance.transform.parent = transform;  
+            }
+            else
+            {
+                GetComponentInChildren<LaserCannon>().AddAmmo();
+            }
         }
 
         public void AddStar()
