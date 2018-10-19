@@ -10,12 +10,6 @@ namespace Rocket
         GameObject spawnAreaPrefab;
 
         [SerializeField]
-        GameObject asteroidPrefab;
-
-        [SerializeField]
-        GameObject monsterPrefab;
-
-        [SerializeField]
         GameObject starPrefab;
 
         [SerializeField]
@@ -32,14 +26,22 @@ namespace Rocket
         float xPadding = 1.0f;
         float yPadding = 2.0f;
 
-        Vector2[,] spawnArea;
+        Vector2[,] spawnPoints;
+
+        public Vector2[,] GetAreaSpawnPoints()
+        {
+            return spawnPoints;
+        }
+
+        public void MarkSpawnAreaPosition(int columnIndex, int rowIndex)
+        {
+            spawnPoints[columnIndex, rowIndex] = Vector2.zero;
+        }
 
         private void Start()
         {
             DeleteDuplicateChildrenIfExists();
-            spawnArea = GenerateSpawnPoints();
-            InstantiateObjectAndMarkRow(monsterPrefab);
-            GenerateObstacles(asteroidPrefab);
+            spawnPoints = GenerateSpawnPoints();
             GenerateItems(starPrefab, 3);
             GenerateItems(itemPrefab, 20);
         }
@@ -61,7 +63,7 @@ namespace Rocket
         {
             if (Random.Range(0, spawnProbability) == 0)
             {
-                InstantiateGameObjectWithinArea(itemToGenerate);
+                //InstantiateGameObjectWithinArea(itemToGenerate);
             }
         }
 
@@ -69,22 +71,7 @@ namespace Rocket
         {
             for (int i = 0; i < maxObstaclesPerArea; i++)
             {
-                InstantiateGameObjectWithinArea(obstaclesToGenerate);
-            }
-        }
-
-        private void InstantiateGameObjectWithinArea(GameObject objectToInstantiate)
-        {
-            randomColumnIndex = Random.Range(0, maxColumns);
-            randomRowIndex = Random.Range(0, maxRows);
-
-            if (spawnArea[randomColumnIndex, randomRowIndex] != Vector2.zero)
-            {
-                InstantiateObjectAndMarkPosition(objectToInstantiate);
-            }
-            else
-            {
-                InstantiateGameObjectWithinArea(objectToInstantiate);
+                //InstantiateGameObjectWithinArea(obstaclesToGenerate);
             }
         }
 
@@ -92,19 +79,8 @@ namespace Rocket
         {
             GameObject objectInstance = Instantiate(objectToInstantiate, transform);
             objectInstance.transform.parent = gameObject.transform;
-            objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
-            spawnArea[randomColumnIndex, randomRowIndex] = Vector2.zero;
-        }
-
-        private void InstantiateObjectAndMarkRow(GameObject objectToInstantiate)
-        {
-            GameObject objectInstance = Instantiate(objectToInstantiate, transform);
-            objectInstance.transform.parent = gameObject.transform;
-            objectInstance.transform.position = spawnArea[randomColumnIndex, randomRowIndex];
-            for (int i = 0; i < maxRows; i++)
-            {
-                spawnArea[randomColumnIndex, i] = Vector2.zero; 
-            }
+            objectInstance.transform.position = spawnPoints[randomColumnIndex, randomRowIndex];
+            spawnPoints[randomColumnIndex, randomRowIndex] = Vector2.zero;
         }
 
         private Vector2[,] GenerateSpawnPoints()

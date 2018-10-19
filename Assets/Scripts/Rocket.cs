@@ -22,6 +22,7 @@ namespace Rocket
             Destroy(gameObject);
             playerPreferences.AddStars(starsCollected);
             starsCollected = 0;
+            playerPreferences.SetScoreThisGame((int)ScoreManager.score);
             levelManager.LoadLevel(mainMenuName);
         }
 

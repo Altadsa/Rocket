@@ -8,7 +8,7 @@ namespace Rocket
         [SerializeField]
         Text scoreText;
 
-        float score;
+        public static float score;
 
         int multiplier = 100;
 

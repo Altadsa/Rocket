@@ -20,7 +20,7 @@ namespace Rocket
 
         private void FixedUpdate()
         {
-            MoveUsingAccelerometer();
+            MoveUsingArrowKeys();
         }
 
         public void Calibrate()

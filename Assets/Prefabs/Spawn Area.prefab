@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4773848672627868}
   - component: {fileID: 114903000764113674}
   - component: {fileID: 61076161442550870}
+  - component: {fileID: 114815203604129042}
+  - component: {fileID: 114436169105140052}
   m_Layer: 0
   m_Name: Spawn Area
   m_TagString: Untagged
@@ -66,6 +68,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &114436169105140052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba9d050d97c522f44a7653a652173807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1741478592652552, guid: de3acdc90f6c3454da76272bce5a48c0,
+    type: 2}
+  maxObjectsToGenerate: 2
+  spawnChance: 0
+--- !u!114 &114815203604129042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1ddcfa6ae0e894986ea322aeb5eb61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
+    type: 2}
+  maxObjectsToGenerate: 5
 --- !u!114 &114903000764113674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,10 +109,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAreaPrefab: {fileID: 1877725160924638}
-  asteroidPrefab: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
-    type: 2}
-  monsterPrefab: {fileID: 1741478592652552, guid: de3acdc90f6c3454da76272bce5a48c0,
-    type: 2}
   starPrefab: {fileID: 1118462976827554, guid: c3e9108332abcbd4eb08795b4a956b00, type: 2}
   itemPrefab: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152, type: 2}
   speed: 5

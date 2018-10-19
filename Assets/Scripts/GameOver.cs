@@ -6,14 +6,30 @@ namespace Rocket
     public class GameOver : MonoBehaviour
     {
         [SerializeField]
-        Text score;
+        Text scoreText;
+
+        [SerializeField]
+        Text highScoreText;
 
         [SerializeField]
         PlayerPreferences playerPreferences;
 
         private void Start()
         {
-            score.text = "Score: " + playerPreferences.GetScoreThisGame();
+            scoreText.text = "Score: " + playerPreferences.GetScoreThisGame();
+            SetHighScore();
+        }
+
+        private void SetHighScore()
+        {
+            int scoreThisGame = playerPreferences.GetScoreThisGame();
+            int highScore = playerPreferences.GetHighScore();
+
+            if (highScore < scoreThisGame)
+            {
+                playerPreferences.SetHighScore(scoreThisGame);
+            }
+            highScoreText.text = "HS: " + playerPreferences.GetHighScore();
         }
     } 
 }
