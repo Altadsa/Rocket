@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rocket
 {
-    [CreateAssetMenu (fileName = "String Constant", menuName = "Constants")]
+    [CreateAssetMenu (menuName = "Constant Values/String Constants")]
     public class StringConstant : ScriptableObject
     {
         [SerializeField]

@@ -10,21 +10,14 @@ namespace Rocket
         GameObject spawnAreaPrefab;
 
         [SerializeField]
-        GameObject starPrefab;
+        Vector2Constant paddingConstant;
 
-        [SerializeField]
-        GameObject itemPrefab;
+        Vector2 padding;
 
         public float speed;
 
         int maxColumns = 5;
         int maxRows = 5;
-        int maxObstaclesPerArea = 4;
-
-        int randomColumnIndex, randomRowIndex;
-
-        float xPadding = 1.0f;
-        float yPadding = 2.0f;
 
         Vector2[,] spawnPoints;
 
@@ -40,10 +33,9 @@ namespace Rocket
 
         private void Start()
         {
+            padding = paddingConstant.Value();
             DeleteDuplicateChildrenIfExists();
             spawnPoints = GenerateSpawnPoints();
-            GenerateItems(starPrefab, 3);
-            GenerateItems(itemPrefab, 20);
         }
 
         private void Update()
@@ -59,30 +51,6 @@ namespace Rocket
             }
         }
 
-        private void GenerateItems(GameObject itemToGenerate, int spawnProbability)
-        {
-            if (Random.Range(0, spawnProbability) == 0)
-            {
-                //InstantiateGameObjectWithinArea(itemToGenerate);
-            }
-        }
-
-        private void GenerateObstacles(GameObject obstaclesToGenerate)
-        {
-            for (int i = 0; i < maxObstaclesPerArea; i++)
-            {
-                //InstantiateGameObjectWithinArea(obstaclesToGenerate);
-            }
-        }
-
-        private void InstantiateObjectAndMarkPosition(GameObject objectToInstantiate)
-        {
-            GameObject objectInstance = Instantiate(objectToInstantiate, transform);
-            objectInstance.transform.parent = gameObject.transform;
-            objectInstance.transform.position = spawnPoints[randomColumnIndex, randomRowIndex];
-            spawnPoints[randomColumnIndex, randomRowIndex] = Vector2.zero;
-        }
-
         private Vector2[,] GenerateSpawnPoints()
         {
             Vector2[,] spawnPoints = new Vector2[maxColumns, maxRows];
@@ -90,17 +58,17 @@ namespace Rocket
             Bounds bounds = GetComponent<BoxCollider2D>().bounds;
 
             Vector2 startPos = new Vector2(bounds.min.x, bounds.max.y);
-            Vector2 vectPos = new Vector2(startPos.x + xPadding, startPos.y - yPadding);
+            Vector2 vectPos = new Vector2(startPos.x + padding.x, startPos.y - padding.y);
 
             for (int x = 0; x < maxColumns; x++)
             {
                 for (int y = 0; y < maxRows; y++)
                 {
                     spawnPoints[x, y] = vectPos;
-                    Vector2 newVectPos = new Vector2(vectPos.x + xPadding, vectPos.y);
+                    Vector2 newVectPos = new Vector2(vectPos.x + padding.x, vectPos.y);
                     vectPos = newVectPos;
                 }
-                vectPos = new Vector2(startPos.x + xPadding, vectPos.y - yPadding);
+                vectPos = new Vector2(startPos.x + padding.x, vectPos.y - padding.y);
             }
 
             return spawnPoints;
