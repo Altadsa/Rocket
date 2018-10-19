@@ -21,8 +21,10 @@ GameObject:
   - component: {fileID: 4773848672627868}
   - component: {fileID: 114903000764113674}
   - component: {fileID: 61076161442550870}
-  - component: {fileID: 114815203604129042}
   - component: {fileID: 114436169105140052}
+  - component: {fileID: 114815203604129042}
+  - component: {fileID: 114521787661001230}
+  - component: {fileID: 114867626519548060}
   m_Layer: 0
   m_Name: Spawn Area
   m_TagString: Untagged
@@ -37,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1877725160924638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.199645, y: -4.6101017, z: -0.072265625}
+  m_LocalPosition: {x: -1.199645, y: -1.43, z: -0.072265625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66,7 +68,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 10}
+  m_Size: {x: 6, y: 16}
   m_EdgeRadius: 0
 --- !u!114 &114436169105140052
 MonoBehaviour:
@@ -82,7 +84,22 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1741478592652552, guid: de3acdc90f6c3454da76272bce5a48c0,
     type: 2}
   maxObjectsToGenerate: 2
-  spawnChance: 0
+  spawnChance: 2
+--- !u!114 &114521787661001230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8d573f98c1824582526d777247efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1118462976827554, guid: c3e9108332abcbd4eb08795b4a956b00,
+    type: 2}
+  maxObjectsToGenerate: 3
+  spawnchance: 3
 --- !u!114 &114815203604129042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,7 +113,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
     type: 2}
-  maxObjectsToGenerate: 5
+  maxObjectsToGenerate: 10
+--- !u!114 &114867626519548060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8d573f98c1824582526d777247efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152,
+    type: 2}
+  maxObjectsToGenerate: 1
+  spawnchance: 15
 --- !u!114 &114903000764113674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnAreaPrefab: {fileID: 1877725160924638}
-  starPrefab: {fileID: 1118462976827554, guid: c3e9108332abcbd4eb08795b4a956b00, type: 2}
-  itemPrefab: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152, type: 2}
+  paddingConstant: {fileID: 11400000, guid: 528088ee1c1b73140b30a651d9cf0a0f, type: 2}
+  maxColumns: {fileID: 11400000, guid: cb9e6873c6891da48bd5428d70546273, type: 2}
+  maxRows: {fileID: 11400000, guid: 2c6f841ae863e964b9fe0d5fe09a6409, type: 2}
   speed: 5

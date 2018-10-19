@@ -12,12 +12,15 @@ namespace Rocket
         [SerializeField]
         Vector2Constant paddingConstant;
 
-        Vector2 padding;
+        [SerializeField]
+        IntConstant maxColumns;
+
+        [SerializeField]
+        IntConstant maxRows;
 
         public float speed;
 
-        int maxColumns = 5;
-        int maxRows = 5;
+        Vector2 padding;
 
         Vector2[,] spawnPoints;
 
@@ -34,6 +37,7 @@ namespace Rocket
         private void Start()
         {
             padding = paddingConstant.Value();
+            gameObject.name = "Spawn Area";
             DeleteDuplicateChildrenIfExists();
             spawnPoints = GenerateSpawnPoints();
         }
@@ -53,16 +57,16 @@ namespace Rocket
 
         private Vector2[,] GenerateSpawnPoints()
         {
-            Vector2[,] spawnPoints = new Vector2[maxColumns, maxRows];
+            Vector2[,] spawnPoints = new Vector2[maxColumns.Value(), maxRows.Value()];
 
             Bounds bounds = GetComponent<BoxCollider2D>().bounds;
 
             Vector2 startPos = new Vector2(bounds.min.x, bounds.max.y);
             Vector2 vectPos = new Vector2(startPos.x + padding.x, startPos.y - padding.y);
 
-            for (int x = 0; x < maxColumns; x++)
+            for (int x = 0; x < maxColumns.Value(); x++)
             {
-                for (int y = 0; y < maxRows; y++)
+                for (int y = 0; y < maxRows.Value(); y++)
                 {
                     spawnPoints[x, y] = vectPos;
                     Vector2 newVectPos = new Vector2(vectPos.x + padding.x, vectPos.y);
@@ -95,7 +99,7 @@ namespace Rocket
         private void InstantiateNewAreaAndSetPosition()
         {
             GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
-            newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 10.0f, transform.position.z);
+            newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 14.0f, transform.position.z);
         }
 
         private void OnTriggerExit2D(Collider2D collision)

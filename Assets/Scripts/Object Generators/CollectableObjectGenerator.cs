@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Rocket
 {
-    public class StaticObjectGenerator : ObjectGenerator
-    { 
+    public class CollectableObjectGenerator : ObjectGenerator
+    {
+        [SerializeField]
+        int spawnchance;
+
         protected override void Generate()
         {
             for (int i = 0; i < maxObjectsToGenerate; i++)
             {
-                InstantiateGameObjectWithinArea();
+                if (Random.Range(0, spawnchance) == 1)
+                {
+                    InstantiateGameObjectWithinArea();
+                }
             }
         }
 
@@ -26,5 +34,6 @@ namespace Rocket
                 InstantiateGameObjectWithinArea();
             }
         }
+
     } 
 }
