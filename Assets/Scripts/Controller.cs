@@ -42,18 +42,8 @@ namespace Rocket
 
         private void MoveUsingAccelerometer()
         {
-            if (AdjustedAccelerometer.x > 0.01f)
-            {
-                rocketRB.velocity = new Vector2(1.0f * travelSpeed * Time.deltaTime, 0.0f);
-            }
-            else if (AdjustedAccelerometer.x < 0.01f)
-            {
-                rocketRB.velocity = new Vector2(-1.0f * travelSpeed * Time.deltaTime, 0.0f);
-            }
-            else
-            {
-                rocketRB.velocity = Vector2.zero;
-            }
+            Vector2 tilt = new Vector2(AdjustedAccelerometer.x * travelSpeed * Time.deltaTime, 0.0f);
+            rocketRB.velocity = tilt;
         }
 
         private void MoveUsingArrowKeys()

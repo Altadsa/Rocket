@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
     type: 2}
-  maxObjectsToGenerate: 10
+  maxObjectsToGenerate: 6
 --- !u!114 &114867626519548060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea8d573f98c1824582526d777247efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152,
+  objectToSpawn: {fileID: 1910360332886006, guid: 081ca37201ead574aae2838b1bf7d93f,
     type: 2}
   maxObjectsToGenerate: 1
-  spawnchance: 15
+  spawnchance: 2
 --- !u!114 &114903000764113674
 MonoBehaviour:
   m_ObjectHideFlags: 1

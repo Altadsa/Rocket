@@ -13,7 +13,7 @@ namespace Rocket
         {
             for (int i = 0; i < maxObjectsToGenerate; i++)
             {
-                if (Random.Range(0, spawnchance) == 1)
+                if (Random.Range(0, spawnchance) == 0)
                 {
                     InstantiateGameObjectWithinArea();
                 }
@@ -23,7 +23,7 @@ namespace Rocket
         private void InstantiateGameObjectWithinArea()
         {
             randomColumnIndex = Random.Range(0, 7);
-            randomRowIndex = Random.Range(0, 5);
+            randomRowIndex = Random.Range(0, 6);
             if (spawnArea.GetAreaSpawnPoints()[randomColumnIndex, randomRowIndex] != Vector2.zero)
             {
                 InstantiateObject();

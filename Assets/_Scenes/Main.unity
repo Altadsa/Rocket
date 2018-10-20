@@ -152,16 +152,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
-        type: 2}
-      propertyPath: travelSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
-        type: 2}
-      propertyPath: downspeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114881011432027486, guid: 28cd1ec9c57b263498add26130ab9c6e,
         type: 2}
       propertyPath: playerPreferences
@@ -172,16 +162,6 @@ Prefab:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1229252748}
-    - target: {fileID: 114881011432027486, guid: 28cd1ec9c57b263498add26130ab9c6e,
-        type: 2}
-      propertyPath: mainMenuName
-      value: 
-      objectReference: {fileID: 11400000, guid: 8364d4f630a86b14fbf52a858378c492,
-        type: 2}
-    - target: {fileID: 1308794179458340, guid: 28cd1ec9c57b263498add26130ab9c6e, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28cd1ec9c57b263498add26130ab9c6e, type: 2}
   m_IsPrefabAsset: 0
@@ -942,6 +922,17 @@ Prefab:
     - target: {fileID: 4773848672627868, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114867626519548060, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198,
+        type: 2}
+      propertyPath: objectToSpawn
+      value: 
+      objectReference: {fileID: 1910360332886006, guid: 081ca37201ead574aae2838b1bf7d93f,
+        type: 2}
+    - target: {fileID: 114867626519548060, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198,
+        type: 2}
+      propertyPath: spawnchance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198, type: 2}

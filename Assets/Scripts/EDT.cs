@@ -6,27 +6,40 @@ namespace Rocket
 {
     public class EDT : MonoBehaviour
     {
+        [SerializeField]
+        IntConstant materialLayerIndex;
 
-        float edtDuration = 10.0f;
+        [SerializeField]
+        IntConstant etherealLayerIndex;
+
+        float edtDuration = 2.0f;
+
+        float timeActive = 0;
+
+        Rocket rocket;
 
         // Use this for initialization
         void Start()
         {
-            Rocket rocket = GetComponentInParent<Rocket>();
+            rocket = GetComponentInParent<Rocket>();
             if (!rocket) { return; }
-
-            StartCoroutine(TransferToEtherealDimension(edtDuration));
+            transform.position = rocket.transform.position;
+            SetRocketLayer(etherealLayerIndex);
         }
 
-        IEnumerator TransferToEtherealDimension(float duration)
+        private void Update()
         {
-            Rocket rocket = GetComponentInParent<Rocket>();
-            if (rocket)
+            timeActive += Time.deltaTime;
+            if (timeActive >= edtDuration)
             {
-                rocket.GetComponent<PolygonCollider2D>().enabled = false;
-                yield return new WaitForSeconds(duration);
-                rocket.GetComponent<PolygonCollider2D>().enabled = true;
+                SetRocketLayer(materialLayerIndex);
+                Destroy(gameObject);
             }
+        }
+
+        private void SetRocketLayer(IntConstant layerIndex)
+        {
+            rocket.gameObject.layer = layerIndex.Value();
         }
     } 
 }
