@@ -11,6 +11,7 @@ namespace Rocket
 
         protected override void Generate()
         {
+            if (spawnArea.HasPlayerItem() && !objectToSpawn.GetComponent<Star>()) { return; }
             for (int i = 0; i < maxObjectsToGenerate; i++)
             {
                 if (Random.Range(0, spawnchance) == 0)
@@ -18,6 +19,13 @@ namespace Rocket
                     InstantiateGameObjectWithinArea();
                 }
             }
+        }
+
+        protected override void InstantiateObject()
+        {
+            GameObject objectInstance = Instantiate(objectToSpawn, transform);
+            objectInstance.transform.parent = gameObject.transform;
+            objectInstance.transform.position = spawnArea.GetAreaSpawnPoints()[randomColumnIndex, randomRowIndex];
         }
 
         private void InstantiateGameObjectWithinArea()

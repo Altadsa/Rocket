@@ -30,12 +30,7 @@ namespace Rocket
             }
         }
 
-        protected void InstantiateObject()
-        {
-            GameObject objectInstance = Instantiate(objectToSpawn, transform);
-            objectInstance.transform.parent = gameObject.transform;
-            objectInstance.transform.position = spawnArea.GetAreaSpawnPoints()[randomColumnIndex, randomRowIndex];
-        }
+        protected abstract void InstantiateObject();
 
         protected abstract void Generate();
 

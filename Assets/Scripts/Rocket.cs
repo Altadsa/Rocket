@@ -28,7 +28,12 @@ namespace Rocket
 
         public void AddItem(GameObject itemToAdd)
         {
-            if (!GetComponentInChildren<LaserCannon>())
+            HandleLaserCannonItem(itemToAdd);
+        }
+
+        private void HandleLaserCannonItem(GameObject itemToAdd)
+        {         
+            if (CanRocketEquipItem(itemToAdd))
             {
                 GameObject itemInstance = Instantiate(itemToAdd);
                 itemInstance.transform.parent = transform;  
@@ -37,6 +42,17 @@ namespace Rocket
             {
                 GetComponentInChildren<LaserCannon>().AddAmmo();
             }
+        }
+
+        private bool CanRocketEquipItem(GameObject itemToAdd)
+        {
+            if (!GetComponentInChildren<LaserCannon>()
+                      || itemToAdd.GetComponent<EDT>()
+                      || itemToAdd.GetComponent<TDD>())
+            {
+                return true;
+            }
+            return false;
         }
 
         public void AddStar()

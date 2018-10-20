@@ -13,6 +13,8 @@ namespace Rocket
 
         Matrix4x4 baseMatrix = Matrix4x4.identity;
 
+        public bool hasTouchEnabled;
+
         void Start()
         {
             rocketRB = GetComponent<Rigidbody2D>();
@@ -20,7 +22,14 @@ namespace Rocket
 
         private void FixedUpdate()
         {
-            MoveUsingArrowKeys();
+            if (!hasTouchEnabled)
+            {
+                MoveUsingArrowKeys(); 
+            }
+            else
+            {
+                MoveUsingAccelerometer();
+            }
         }
 
         public void Calibrate()

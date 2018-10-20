@@ -20,6 +20,13 @@ namespace Rocket
             }
         }
 
+        protected override void InstantiateObject()
+        {
+            GameObject objectInstance = Instantiate(objectToSpawn, transform);
+            objectInstance.transform.parent = gameObject.transform;
+            objectInstance.transform.position = spawnArea.GetAreaSpawnPoints()[randomColumnIndex, randomRowIndex];
+        }
+
         private void InstantiateGameObjectWithinArea()
         {
             randomColumnIndex = Random.Range(0, 7);
@@ -37,7 +44,7 @@ namespace Rocket
 
         private void MarkRowWithinSpawnArea()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 spawnArea.MarkSpawnAreaPosition(randomColumnIndex, i);
             }

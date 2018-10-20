@@ -34,6 +34,18 @@ namespace Rocket
             spawnPoints[columnIndex, rowIndex] = Vector2.zero;
         }
 
+        public bool HasPlayerItem()
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.GetComponent<Item>())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void Start()
         {
             padding = paddingConstant.Value();

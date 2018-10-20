@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114815203604129042}
   - component: {fileID: 114521787661001230}
   - component: {fileID: 114867626519548060}
+  - component: {fileID: 114342186879276140}
+  - component: {fileID: 114985976813977828}
   m_Layer: 0
   m_Name: Spawn Area
   m_TagString: Untagged
@@ -70,6 +72,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 16}
   m_EdgeRadius: 0
+--- !u!114 &114342186879276140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8d573f98c1824582526d777247efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152,
+    type: 2}
+  maxObjectsToGenerate: 1
+  spawnchance: 15
 --- !u!114 &114436169105140052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +131,8 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1893607580017356, guid: 68526cfbaaced9b4388ac8a40b26c7e6,
     type: 2}
   maxObjectsToGenerate: 6
+  minScale: 0.5
+  maxScale: 1.2
 --- !u!114 &114867626519548060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +147,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1910360332886006, guid: 081ca37201ead574aae2838b1bf7d93f,
     type: 2}
   maxObjectsToGenerate: 1
-  spawnchance: 2
+  spawnchance: 30
 --- !u!114 &114903000764113674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,3 +164,18 @@ MonoBehaviour:
   maxColumns: {fileID: 11400000, guid: cb9e6873c6891da48bd5428d70546273, type: 2}
   maxRows: {fileID: 11400000, guid: 2c6f841ae863e964b9fe0d5fe09a6409, type: 2}
   speed: 5
+--- !u!114 &114985976813977828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877725160924638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea8d573f98c1824582526d777247efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 1932629773662952, guid: 00157a3cf83d7334cbbfe0694b283ec0,
+    type: 2}
+  maxObjectsToGenerate: 1
+  spawnchance: 15

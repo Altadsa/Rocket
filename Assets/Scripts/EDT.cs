@@ -12,7 +12,7 @@ namespace Rocket
         [SerializeField]
         IntConstant etherealLayerIndex;
 
-        float edtDuration = 2.0f;
+        float edtDuration = 10.0f;
 
         float timeActive = 0;
 
