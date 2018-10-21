@@ -1,11 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Rocket
 {
     public class PlayerPreferences : MonoBehaviour
     {
+        private void Start()
+        {
+            Rocket rocket = GameObject.FindObjectOfType<Rocket>();
+            if (rocket)
+            {
+                rocket.onRocketDeath += OnRocketDeath;
+            }
+        }
+
+        private void OnRocketDeath()
+        {
+            AddStars(Rocket.starsCollected);
+            SetScoreThisGame((int)ScoreManager.score);
+        }
 
         public int GetStars()
         {

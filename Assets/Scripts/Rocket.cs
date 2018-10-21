@@ -6,24 +6,20 @@ namespace Rocket
 {
     public class Rocket : MonoBehaviour
     {
-        [SerializeField]
-        PlayerPreferences playerPreferences;
 
-        [SerializeField]
-        LevelManager levelManager;
+        public static int starsCollected = 0;
 
-        [SerializeField]
-        StringConstant mainMenuName;
-
-        int starsCollected = 0;
+        public delegate void OnRocketDeathCallback();
+        public event OnRocketDeathCallback onRocketDeath;
 
         public void DestroyRocket()
         {
             Destroy(gameObject);
-            playerPreferences.AddStars(starsCollected);
             starsCollected = 0;
-            playerPreferences.SetScoreThisGame((int)ScoreManager.score);
-            levelManager.LoadLevel(mainMenuName);
+            if (onRocketDeath != null)
+            {
+                onRocketDeath();
+            }
         }
 
         public void AddItem(GameObject itemToAdd)

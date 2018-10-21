@@ -162,6 +162,16 @@ Prefab:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1229252748}
+    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
+        type: 2}
+      propertyPath: travelSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
+        type: 2}
+      propertyPath: hasTouchEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28cd1ec9c57b263498add26130ab9c6e, type: 2}
   m_IsPrefabAsset: 0
@@ -1083,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1256da0be19c4e48af8b14c33c26e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuName: {fileID: 11400000, guid: 8364d4f630a86b14fbf52a858378c492, type: 2}
 --- !u!4 &1295746704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4773848672627868, guid: 004b8a8d0c1e2c44a9579ecd7b6cc198,
