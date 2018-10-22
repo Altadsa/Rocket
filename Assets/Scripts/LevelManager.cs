@@ -6,15 +6,11 @@ namespace Rocket
     public class LevelManager : MonoBehaviour
     {
         [SerializeField]
-        StringConstant mainMenuName;
+        StringConstant gameOverName;
 
         private void Start()
         {
-            Rocket rocket = GameObject.FindObjectOfType<Rocket>();
-            if (rocket)
-            {
-                rocket.onRocketDeath += LoadLevelOnRocketDeath; 
-            }
+            Rocket.onRocketDeath += LoadLevelOnRocketDeath;
         }
 
         public void PauseGame()
@@ -35,7 +31,7 @@ namespace Rocket
 
         public void LoadLevelOnRocketDeath()
         {
-            LoadLevel(mainMenuName);
+            LoadLevel(gameOverName);
         }
 
     } 

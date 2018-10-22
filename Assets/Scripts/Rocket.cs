@@ -10,7 +10,7 @@ namespace Rocket
         public static int starsCollected = 0;
 
         public delegate void OnRocketDeathCallback();
-        public event OnRocketDeathCallback onRocketDeath;
+        public static event OnRocketDeathCallback onRocketDeath;
 
         public void DestroyRocket()
         {

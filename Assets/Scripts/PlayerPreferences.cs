@@ -6,11 +6,7 @@ namespace Rocket
     {
         private void Start()
         {
-            Rocket rocket = GameObject.FindObjectOfType<Rocket>();
-            if (rocket)
-            {
-                rocket.onRocketDeath += OnRocketDeath;
-            }
+            Rocket.onRocketDeath += OnRocketDeath;
         }
 
         private void OnRocketDeath()

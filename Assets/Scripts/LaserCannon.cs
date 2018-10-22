@@ -57,5 +57,10 @@ namespace Rocket
         {
             ammo += AMMO_PER_ROUND;
         }
+
+        public int GetAmmo()
+        {
+            return ammo;
+        }
     }
 }
