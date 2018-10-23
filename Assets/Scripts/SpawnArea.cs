@@ -6,6 +6,8 @@ namespace Rocket
 {
     public class SpawnArea : MonoBehaviour
     {
+        #region VARIABLES
+
         [SerializeField]
         GameObject spawnAreaPrefab;
 
@@ -22,7 +24,48 @@ namespace Rocket
 
         Vector2 padding;
 
-        Vector2[,] spawnPoints;
+        Vector2[,] spawnPoints; 
+
+        #endregion
+
+        #region UNITY LIFECYCLE
+
+        private void Start()
+        {
+            padding = paddingConstant.Value();
+            gameObject.name = "Spawn Area";
+            DeleteDuplicateChildrenIfExists();
+            spawnPoints = GenerateSpawnPoints();
+        }
+
+        private void Update()
+        {
+            transform.position += Vector3.down * speed * Time.deltaTime;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Rocket rocketHealth = collision.GetComponent<Rocket>();
+            if (rocketHealth)
+            {
+                InstantiateNewAreaAndSetPosition();
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            Rocket rocketHealth = collision.GetComponent<Rocket>();
+
+            if (rocketHealth)
+            {
+                DestroyChildren();
+                Destroy(gameObject);
+            }
+        } 
+
+        #endregion
+
+        #region PUBLIC FUNCTIONS
 
         public Vector2[,] GetAreaSpawnPoints()
         {
@@ -46,18 +89,9 @@ namespace Rocket
             return false;
         }
 
-        private void Start()
-        {
-            padding = paddingConstant.Value();
-            gameObject.name = "Spawn Area";
-            DeleteDuplicateChildrenIfExists();
-            spawnPoints = GenerateSpawnPoints();
-        }
+        #endregion
 
-        private void Update()
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-        }
+        #region PRIVATE FUNCTIONS
 
         private void DeleteDuplicateChildrenIfExists()
         {
@@ -98,31 +132,12 @@ namespace Rocket
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            Rocket rocketHealth = collision.GetComponent<Rocket>();
-
-            if (rocketHealth)
-            {
-                InstantiateNewAreaAndSetPosition();
-            }
-        }
-
         private void InstantiateNewAreaAndSetPosition()
         {
             GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
             newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 14.0f, transform.position.z);
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            Rocket rocketHealth = collision.GetComponent<Rocket>();
-
-            if (rocketHealth)
-            {
-                DestroyChildren();
-                Destroy(gameObject);
-            }
-        }
+        #endregion
     }
 }

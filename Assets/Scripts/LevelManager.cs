@@ -10,7 +10,7 @@ namespace Rocket
 
         private void Start()
         {
-            Rocket.onRocketDeath += LoadLevelOnRocketDeath;
+            EventSystem.Current.RegisterListener(EVENT_TYPE.ROCKET_DESTROYED, LoadLevelOnRocketDeath);
         }
 
         public void PauseGame()

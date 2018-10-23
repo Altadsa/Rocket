@@ -9,17 +9,11 @@ namespace Rocket
 
         public static int starsCollected = 0;
 
-        public delegate void OnRocketDeathCallback();
-        public static event OnRocketDeathCallback onRocketDeath;
-
         public void DestroyRocket()
         {
             Destroy(gameObject);
             starsCollected = 0;
-            if (onRocketDeath != null)
-            {
-                onRocketDeath();
-            }
+            EventSystem.Current.FireEvent(EVENT_TYPE.ROCKET_DESTROYED);
         }
 
         public void AddItem(GameObject itemToAdd)
