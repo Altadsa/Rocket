@@ -38,13 +38,18 @@ namespace Rocket
             image.sprite = itemData.ItemSprite;
             title.text = itemData.ItemTitle;
             description.text = itemData.ItemDescription;
-            cost.text = itemData.Cost.ToString();
+            cost.text = "Buy: " + itemData.Cost;
 
         }
 
         public void UnlockItem()
         {
             int starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars();
+            PurchaseItemIfEnoughStars(starCount);
+        }
+
+        private void PurchaseItemIfEnoughStars(int starCount)
+        {
             if (starCount > itemData.Cost)
             {
                 Debug.Log(itemData.ItemTitle + " purchased");
@@ -54,6 +59,5 @@ namespace Rocket
                 Debug.Log("You don't have enough Stars");
             }
         }
-
     } 
 }
