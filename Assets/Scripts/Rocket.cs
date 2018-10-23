@@ -8,6 +8,15 @@ namespace Rocket
     {
 
         public static int starsCollected = 0;
+        public static Sprite rocketSprite;
+
+        private void Start()
+        {
+            if (rocketSprite)
+            {
+                GetComponentInChildren<SpriteRenderer>().sprite = rocketSprite;
+            }
+        }
 
         public void DestroyRocket()
         {

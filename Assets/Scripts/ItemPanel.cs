@@ -48,11 +48,16 @@ namespace Rocket
             PurchaseItemIfEnoughStars(starCount);
         }
 
+        private void DisplayButtonText()
+        {
+            
+        }
+
         private void PurchaseItemIfEnoughStars(int starCount)
         {
             if (starCount > itemData.Cost)
             {
-                Debug.Log(itemData.ItemTitle + " purchased");
+                Rocket.rocketSprite = itemData.ItemSprite;
             }
             else
             {
