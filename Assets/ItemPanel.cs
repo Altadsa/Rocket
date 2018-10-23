@@ -11,6 +11,8 @@ namespace Rocket
 
         #region VARIABLES
 
+        ItemData itemData;
+
         [SerializeField]
         Image image;
 
@@ -25,13 +27,32 @@ namespace Rocket
 
         #endregion
 
-        public void LoadItemData(ItemData itemData)
+        public void Setup(ItemData data)
+        {
+            itemData = data;
+            LoadItemData();
+        }
+
+        private void LoadItemData()
         {
             image.sprite = itemData.ItemSprite;
             title.text = itemData.ItemTitle;
             description.text = itemData.ItemDescription;
             cost.text = itemData.Cost.ToString();
 
+        }
+
+        public void UnlockItem()
+        {
+            int starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars();
+            if (starCount > itemData.Cost)
+            {
+                Debug.Log(itemData.ItemTitle + " purchased");
+            }
+            else
+            {
+                Debug.Log("You don't have enough Stars");
+            }
         }
 
     } 

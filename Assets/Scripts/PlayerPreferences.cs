@@ -4,6 +4,19 @@ namespace Rocket
 {
     public class PlayerPreferences : MonoBehaviour
     {
+        private static PlayerPreferences playerPreferences;
+        public static PlayerPreferences CurrentPlayerPreferences
+        {
+            get
+            {
+                if (playerPreferences == null)
+                {
+                    playerPreferences = GameObject.FindObjectOfType<PlayerPreferences>();
+                }
+                return playerPreferences;
+            }
+        }
+
         private void Start()
         {
             EventSystem.Current.RegisterListener(EVENT_TYPE.ROCKET_DESTROYED, OnRocketDeath);

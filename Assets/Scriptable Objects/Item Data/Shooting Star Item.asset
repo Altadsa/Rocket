@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9dedb39bfa605419347a51ba27f045, type: 3}
+  m_Name: Shooting Star Item
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 46fc4d5238240554ba7f0890472f11e0, type: 3}
+  itemTitle: Shooting Star Reskin
+  itemDescription: '"I''m a shooting star leaping through the sky
+
+    like a tiger defying the laws of gravity"
+
+    -Queen: Don''t Stop Me Now'
+  cost: 1000
