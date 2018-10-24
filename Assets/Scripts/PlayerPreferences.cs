@@ -17,11 +17,6 @@ namespace Rocket
             }
         }
 
-        private void Start()
-        {
-            EventSystem.Current.RegisterListener(EVENT_TYPE.ROCKET_DESTROYED, OnRocketDeath);
-        }
-
         private void OnRocketDeath()
         {
             AddStars(Rocket.starsCollected);

@@ -8,11 +8,6 @@ namespace Rocket
         [SerializeField]
         StringConstant gameOverName;
 
-        private void Start()
-        {
-            EventSystem.Current.RegisterListener(EVENT_TYPE.ROCKET_DESTROYED, LoadLevelOnRocketDeath);
-        }
-
         public void PauseGame()
         {
             Time.timeScale = 0;
@@ -29,7 +24,7 @@ namespace Rocket
             SceneManager.LoadScene(levelName.Value);
         }
 
-        public void LoadLevelOnRocketDeath()
+        public void OnRocketDeath()
         {
             LoadLevel(gameOverName);
         }

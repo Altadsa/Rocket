@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4782460417297796}
-  - component: {fileID: 114293052383666944}
+  - component: {fileID: 114879494057611784}
   m_Layer: 0
   m_Name: Event System
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114293052383666944
+--- !u!114 &114879494057611784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,3 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329f277b25aed794abce2745dd2fd869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listeners: []

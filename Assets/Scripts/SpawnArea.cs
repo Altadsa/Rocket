@@ -24,7 +24,10 @@ namespace Rocket
 
         Vector2 padding;
 
-        Vector2[,] spawnPoints; 
+        Vector2[,] spawnPoints;
+
+        [SerializeField]
+        Event onAreaGenerated;
 
         #endregion
 
@@ -36,6 +39,7 @@ namespace Rocket
             gameObject.name = "Spawn Area";
             DeleteDuplicateChildrenIfExists();
             spawnPoints = GenerateSpawnPoints();
+            onAreaGenerated.Raise();
         }
 
         private void Update()

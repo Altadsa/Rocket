@@ -10,6 +10,9 @@ namespace Rocket
         public static int starsCollected = 0;
         public static Sprite rocketSprite;
 
+        [SerializeField]
+        Event onRocketDestroyed;
+
         private void Start()
         {
             if (rocketSprite)
@@ -22,7 +25,7 @@ namespace Rocket
         {
             Destroy(gameObject);
             starsCollected = 0;
-            EventSystem.Current.FireEvent(EVENT_TYPE.ROCKET_DESTROYED);
+            onRocketDestroyed.Raise();
         }
 
         public void AddItem(GameObject itemToAdd)
