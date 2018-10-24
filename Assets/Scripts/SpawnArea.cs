@@ -26,9 +26,6 @@ namespace Rocket
 
         Vector2[,] spawnPoints;
 
-        [SerializeField]
-        Event onAreaGenerated;
-
         #endregion
 
         #region UNITY LIFECYCLE
@@ -39,7 +36,6 @@ namespace Rocket
             gameObject.name = "Spawn Area";
             DeleteDuplicateChildrenIfExists();
             spawnPoints = GenerateSpawnPoints();
-            onAreaGenerated.Raise();
         }
 
         private void Update()
