@@ -11,17 +11,24 @@ namespace Rocket
         [SerializeField]
         PlayerPreferences playerPreferences;
 
-        // Use this for initialization
-        void Start()
+        private static Store _CurrentStore;
+
+        public static Store CurrentStore
         {
-            int starCount = playerPreferences.GetStars();
+            get
+            {
+                if (!_CurrentStore)
+                {
+                    _CurrentStore = FindObjectOfType<Store>();
+                }
+                return _CurrentStore;
+            }
+        }
+
+        public void UpdateAvailableStars()
+        {
+            int starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars();
             starsText.text = "Stars Availabe: " + starCount.ToString();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    } 
+    }
 }

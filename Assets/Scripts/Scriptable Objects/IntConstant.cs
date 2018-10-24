@@ -10,9 +10,9 @@ namespace Rocket
         [SerializeField]
         int value;
 
-        public int Value()
+        public int Value
         {
-            return value;
+            get { return value; }
         }
-    } 
+    }
 }

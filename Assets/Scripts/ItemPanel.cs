@@ -23,7 +23,10 @@ namespace Rocket
         Text description;
 
         [SerializeField]
-        Text cost; 
+        Text cost;
+
+        [SerializeField]
+        Button panelButton;
 
         #endregion
 
@@ -38,7 +41,7 @@ namespace Rocket
             image.sprite = itemData.ItemSprite;
             title.text = itemData.ItemTitle;
             description.text = itemData.ItemDescription;
-            cost.text = "Buy: " + itemData.Cost;
+            DisplayButtonText();
 
         }
 
@@ -50,14 +53,41 @@ namespace Rocket
 
         private void DisplayButtonText()
         {
-            
+            if (itemData.IsUnlocked && !itemData.ItemSprite)
+            {
+                cost.text = "Unlocked";
+                panelButton.enabled = false;
+            }
+            else if (itemData.IsUnlocked && Rocket.rocketSprite != itemData.ItemSprite)
+            {
+                cost.text = "Equip";
+                panelButton.enabled = true;
+            }
+            else if (itemData.IsUnlocked && Rocket.rocketSprite == itemData.ItemSprite)
+            {
+                cost.text = "Equipped";
+                panelButton.enabled = false;
+            }
+            else
+            {
+                cost.text = "Buy: " + itemData.Cost;
+                panelButton.enabled = true;
+            }
         }
 
         private void PurchaseItemIfEnoughStars(int starCount)
         {
+            if (itemData.IsUnlocked)
+            {
+                Rocket.rocketSprite = itemData.ItemSprite;
+                return;
+            }
             if (starCount > itemData.Cost)
             {
                 Rocket.rocketSprite = itemData.ItemSprite;
+                itemData.IsUnlocked = true;
+                PlayerPreferences.CurrentPlayerPreferences.AddStars(-itemData.Cost);
+                Store.CurrentStore.UpdateAvailableStars();
             }
             else
             {

@@ -39,7 +39,7 @@ namespace Rocket
 
         private void SetRocketLayer(IntConstant layerIndex)
         {
-            rocket.gameObject.layer = layerIndex.Value();
+            rocket.gameObject.layer = layerIndex.Value;
         }
     } 
 }

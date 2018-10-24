@@ -26,7 +26,7 @@ namespace Rocket
         public void LoadLevel(StringConstant levelName)
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene(levelName.Value());
+            SceneManager.LoadScene(levelName.Value);
         }
 
         public void LoadLevelOnRocketDeath()

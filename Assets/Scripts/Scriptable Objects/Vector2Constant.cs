@@ -8,9 +8,9 @@ namespace Rocket
         [SerializeField]
         Vector2 value;
 
-        public Vector2 Value()
+        public Vector2 Value
         {
-            return value;
+            get { return value; }
         }
     } 
 }

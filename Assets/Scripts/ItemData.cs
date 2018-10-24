@@ -28,6 +28,7 @@ namespace Rocket
         public string ItemTitle { get { return itemTitle; } }
         public string ItemDescription { get { return itemDescription; } }
         public int Cost { get { return cost; } }
+        public bool IsUnlocked { get; set; }
 
         #endregion
 
