@@ -6,7 +6,7 @@ namespace Rocket
     public class LevelManager : MonoBehaviour
     {
         [SerializeField]
-        StringConstant gameOverName;
+        Event onGameStarted;
 
         public void PauseGame()
         {
@@ -18,16 +18,17 @@ namespace Rocket
             Time.timeScale = 1;
         }
 
-        public void LoadLevel(StringConstant levelName)
+        public void StartNewGame()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(levelName.Value);
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.buildIndex);
+            onGameStarted.Raise();
         }
 
-        public void OnRocketDeath()
+        public void StartGame()
         {
-            LoadLevel(gameOverName);
+            Rocket.Instance.gameObject.SetActive(true);
+            onGameStarted.Raise();
         }
-
     } 
 }

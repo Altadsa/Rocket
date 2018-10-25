@@ -20,7 +20,8 @@ namespace Rocket
         [SerializeField]
         IntConstant maxRows;
 
-        public float speed;
+        [SerializeField]
+        IntVariable speed;
 
         Vector2 padding;
 
@@ -40,7 +41,7 @@ namespace Rocket
 
         private void Update()
         {
-            transform.position += Vector3.down * speed * Time.deltaTime;
+            transform.position += Vector3.down * speed.Value * Time.deltaTime;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -135,6 +136,7 @@ namespace Rocket
         private void InstantiateNewAreaAndSetPosition()
         {
             GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
+            newSpawnArea.transform.parent = transform.parent;
             newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 14.0f, transform.position.z);
         }
 

@@ -8,9 +8,6 @@ namespace Rocket
         [SerializeField]
         Text starsText;
 
-        [SerializeField]
-        PlayerPreferences playerPreferences;
-
         private static Store _CurrentStore;
 
         public static Store CurrentStore

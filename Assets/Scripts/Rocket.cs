@@ -8,22 +8,31 @@ namespace Rocket
     {
 
         public static int starsCollected = 0;
-        public static Sprite rocketSprite;
 
         [SerializeField]
         Event onRocketDestroyed;
 
-        private void Start()
+        private static Rocket instance;
+        public static Rocket Instance
         {
-            if (rocketSprite)
+            get
             {
-                GetComponentInChildren<SpriteRenderer>().sprite = rocketSprite;
+                if (!instance)
+                {
+                    instance = FindObjectOfType<Rocket>();
+                }
+                return instance;
             }
+        }
+
+        public void SetRocketSprite(Sprite spriteToSet)
+        {
+            GetComponentInChildren<SpriteRenderer>().sprite = spriteToSet;
         }
 
         public void DestroyRocket()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             starsCollected = 0;
             onRocketDestroyed.Raise();
         }

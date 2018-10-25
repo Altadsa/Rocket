@@ -163,7 +163,7 @@ MonoBehaviour:
   paddingConstant: {fileID: 11400000, guid: 528088ee1c1b73140b30a651d9cf0a0f, type: 2}
   maxColumns: {fileID: 11400000, guid: cb9e6873c6891da48bd5428d70546273, type: 2}
   maxRows: {fileID: 11400000, guid: 2c6f841ae863e964b9fe0d5fe09a6409, type: 2}
-  speed: 5
+  speed: {fileID: 11400000, guid: f5078b7707f97524fa517918036adf18, type: 2}
 --- !u!114 &114985976813977828
 MonoBehaviour:
   m_ObjectHideFlags: 1

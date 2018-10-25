@@ -58,12 +58,12 @@ namespace Rocket
                 cost.text = "Unlocked";
                 panelButton.enabled = false;
             }
-            else if (itemData.IsUnlocked && Rocket.rocketSprite != itemData.ItemSprite)
+            else if (itemData.IsUnlocked && Rocket.Instance != itemData.ItemSprite)
             {
                 cost.text = "Equip";
                 panelButton.enabled = true;
             }
-            else if (itemData.IsUnlocked && Rocket.rocketSprite == itemData.ItemSprite)
+            else if (itemData.IsUnlocked && Rocket.Instance == itemData.ItemSprite)
             {
                 cost.text = "Equipped";
                 panelButton.enabled = false;
@@ -79,12 +79,12 @@ namespace Rocket
         {
             if (itemData.IsUnlocked)
             {
-                Rocket.rocketSprite = itemData.ItemSprite;
+                Rocket.Instance.SetRocketSprite(itemData.ItemSprite);
                 return;
             }
             if (starCount > itemData.Cost)
             {
-                Rocket.rocketSprite = itemData.ItemSprite;
+                Rocket.Instance.SetRocketSprite(itemData.ItemSprite);
                 itemData.IsUnlocked = true;
                 PlayerPreferences.CurrentPlayerPreferences.AddStars(-itemData.Cost);
                 Store.CurrentStore.UpdateAvailableStars();
