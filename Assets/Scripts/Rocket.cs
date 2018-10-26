@@ -10,6 +10,9 @@ namespace Rocket
         public static int starsCollected = 0;
 
         [SerializeField]
+        Vector2Constant startPos;
+
+        [SerializeField]
         Event onRocketDestroyed;
 
         private static Rocket instance;
@@ -23,6 +26,11 @@ namespace Rocket
                 }
                 return instance;
             }
+        }
+
+        private void OnEnable()
+        {
+            transform.position = startPos.Value;
         }
 
         public void SetRocketSprite(Sprite spriteToSet)

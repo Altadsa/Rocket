@@ -68,8 +68,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1308794179458340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2, y: -13.38, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4580586972351284}
@@ -184,9 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d759d573f08b922409194940724461a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPreferences: {fileID: 0}
-  levelManager: {fileID: 0}
-  mainMenuName: {fileID: 11400000, guid: 8364d4f630a86b14fbf52a858378c492, type: 2}
+  startPos: {fileID: 11400000, guid: 32ef909c60d2bb248aebc243e8a6c8d3, type: 2}
+  onRocketDestroyed: {fileID: 11400000, guid: 9132217fcf6c6774faf8f92601e192b9, type: 2}
 --- !u!212 &212602206644226288
 SpriteRenderer:
   m_ObjectHideFlags: 1

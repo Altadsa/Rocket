@@ -31,8 +31,8 @@ namespace Rocket
 
         public void UpdateAvailableStars()
         {
-            int starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars();
-            starsText.text = "Stars Availabe: " + starCount.ToString();
+            string starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars().ToString();
+            starsText.text = string.Format("Stars Availabe: {0}", starCount);
         }
     }
 }
