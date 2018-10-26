@@ -20,7 +20,6 @@ namespace Rocket
         private void OnRocketDeath()
         {
             AddStars(Rocket.starsCollected);
-            SetScoreThisGame((int)ScoreManager.score);
         }
 
         public int GetStars()
@@ -34,19 +33,9 @@ namespace Rocket
             PlayerPrefs.SetInt("Stars", total);
         }
 
-        public int GetScoreThisGame()
-        {
-            return PlayerPrefs.GetInt("Score");
-        }
-
         public int GetHighScore()
         {
             return PlayerPrefs.GetInt("High Score");
-        }
-
-        public void SetScoreThisGame(int scoreToSet)
-        {
-            PlayerPrefs.SetInt("Score", scoreToSet);
         }
 
         public void SetHighScore(int scoreToSet)

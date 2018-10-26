@@ -33,8 +33,10 @@ namespace Rocket
 
         private void Start()
         {
+            
             padding = paddingConstant.Value;
             gameObject.name = "Spawn Area";
+            transform.position = new Vector3(transform.position.x, transform.position.y + 14.0f, transform.position.z);
             DeleteDuplicateChildrenIfExists();
             spawnPoints = GenerateSpawnPoints();
         }
@@ -67,6 +69,12 @@ namespace Rocket
         #endregion
 
         #region PUBLIC FUNCTIONS
+
+        public void OnGameStarted()
+        {
+            InstantiateNewAreaAndSetPosition();
+            Destroy(gameObject);
+        }
 
         public Vector2[,] GetAreaSpawnPoints()
         {
@@ -137,7 +145,7 @@ namespace Rocket
         {
             GameObject newSpawnArea = Instantiate(spawnAreaPrefab);
             newSpawnArea.transform.parent = transform.parent;
-            newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y + 14.0f, transform.position.z);
+            newSpawnArea.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         }
 
         #endregion

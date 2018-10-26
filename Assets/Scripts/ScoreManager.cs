@@ -8,12 +8,31 @@ namespace Rocket
         [SerializeField]
         Text scoreText;
 
-        public static float score;
+        public float score;
 
         int multiplier = 100;
 
+        #region Singleton
+        private static ScoreManager instance;
+        private static readonly object padlock = new object();
+        public static ScoreManager Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (!instance)
+                    {
+                        instance = FindObjectOfType<ScoreManager>();
+                    }
+                    return instance; 
+                }
+            }
+        } 
+        #endregion
+
         // Use this for initialization
-        void Start()
+        public void OnGameStarted()
         {
             score = 0;
         }

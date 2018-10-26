@@ -8,19 +8,26 @@ namespace Rocket
         [SerializeField]
         Text starsText;
 
+        #region Singleton
+
         private static Store _CurrentStore;
+        private static readonly object padlock = new object();
 
         public static Store CurrentStore
         {
             get
             {
-                if (!_CurrentStore)
+                lock (padlock)
                 {
-                    _CurrentStore = FindObjectOfType<Store>();
+                    if (!_CurrentStore)
+                    {
+                        _CurrentStore = FindObjectOfType<Store>();
+                    }
+                    return _CurrentStore;
                 }
-                return _CurrentStore;
             }
-        }
+        } 
+        #endregion
 
         public void UpdateAvailableStars()
         {
