@@ -13,7 +13,7 @@ namespace Rocket
 
         Matrix4x4 baseMatrix = Matrix4x4.identity;
 
-        public bool hasTouchEnabled;
+        public bool isTouchEnabled;
 
         void Start()
         {
@@ -22,7 +22,7 @@ namespace Rocket
 
         private void FixedUpdate()
         {
-            if (!hasTouchEnabled)
+            if (!isTouchEnabled)
             {
                 MoveUsingArrowKeys(); 
             }
@@ -30,6 +30,11 @@ namespace Rocket
             {
                 MoveUsingAccelerometer();
             }
+        }
+
+        public void ToggleTouch()
+        {
+            isTouchEnabled = !isTouchEnabled;
         }
 
         public void Calibrate()
