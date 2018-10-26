@@ -25,7 +25,6 @@ namespace Rocket
         {
             Rocket.Instance.gameObject.SetActive(true);
             onGameStarted.Raise();
-            StartSpawnAreas();
             GenerateFirstSpawnArea();
         }
 
@@ -36,16 +35,6 @@ namespace Rocket
             {
                 foreach (SpawnArea spawnArea in spawnAreas)
                 { GameObject.Destroy(spawnArea.gameObject); }
-            }
-        }
-
-        private void StartSpawnAreas()
-        {
-            SpawnArea[] spawnAreas = FindObjectsOfType<SpawnArea>();
-            if (spawnAreas != null)
-            {
-                foreach(SpawnArea spawnArea in spawnAreas)
-                { spawnArea.OnGameStarted(); }
             }
         }
 

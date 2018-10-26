@@ -70,12 +70,6 @@ namespace Rocket
 
         #region PUBLIC FUNCTIONS
 
-        public void OnGameStarted()
-        {
-            InstantiateNewAreaAndSetPosition();
-            Destroy(gameObject);
-        }
-
         public Vector2[,] GetAreaSpawnPoints()
         {
             return spawnPoints;
