@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4552860443460620}
   - component: {fileID: 58602581141073444}
   - component: {fileID: 114944132551886744}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4276765384163646}
   - component: {fileID: 212546233001330492}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Star Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

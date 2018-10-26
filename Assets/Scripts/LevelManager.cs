@@ -42,7 +42,6 @@ namespace Rocket
         {
             GameObject spawnArea = Instantiate(spawnAreaPrefab);
             spawnArea.transform.parent = GameObject.Find("Game").transform;
-            //spawnArea.transform.position = new Vector3();
         }
     } 
 }
