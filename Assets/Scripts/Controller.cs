@@ -35,6 +35,8 @@ namespace Rocket
         public void ToggleTouch()
         {
             isTouchEnabled = !isTouchEnabled;
+            if (isTouchEnabled) { travelSpeed = 1000.0f; }
+            else { travelSpeed = 200.0f; }
         }
 
         public void Calibrate()

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+
 
 namespace Rocket
 {
@@ -50,3 +52,4 @@ namespace Rocket
         }
     } 
 }
+#endif

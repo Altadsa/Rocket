@@ -16,7 +16,20 @@ namespace Rocket
 
         private float reloadTime = 0.1f;
 
-        // Update is called once per frame
+        #region UNITY LIFECYCLE
+
+        private void Start()
+        {
+            Rocket rocketInstance = Rocket.Instance;
+            if (rocketInstance)
+            {
+                if (rocketInstance.GetActiveSprite() != Rocket.Instance.GetDefaultSprite())
+                {
+                    GetComponentInChildren<SpriteRenderer>().enabled = false;
+                }
+            }
+        }
+
         void Update()
         {
             Rocket rocket = gameObject.GetComponentInParent<Rocket>();
@@ -24,7 +37,25 @@ namespace Rocket
             timer += Time.deltaTime;
             transform.position = rocket.transform.position;
             FireCannon();
+        } 
+
+        #endregion
+
+        #region PUBLIC FUNCTIONS
+
+        public void AddAmmo()
+        {
+            ammo += AMMO_PER_ROUND;
         }
+
+        public int GetAmmo()
+        {
+            return ammo;
+        }
+
+        #endregion
+
+        #region PRIVATE FUNCTIONS
 
         private void FireCannon()
         {
@@ -51,16 +82,10 @@ namespace Rocket
             {
                 Destroy(gameObject);
             }
-        }
+        } 
 
-        public void AddAmmo()
-        {
-            ammo += AMMO_PER_ROUND;
-        }
+        #endregion
 
-        public int GetAmmo()
-        {
-            return ammo;
-        }
+
     }
 }

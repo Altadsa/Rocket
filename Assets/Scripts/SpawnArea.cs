@@ -8,6 +8,8 @@ namespace Rocket
     {
         #region VARIABLES
 
+        public static bool canSpawnItems;
+
         [SerializeField]
         GameObject spawnAreaPrefab;
 

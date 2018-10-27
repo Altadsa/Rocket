@@ -86,7 +86,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1213815334595954, guid: c49149f1cbd84f44d8f155217edeb152,
     type: 2}
   maxObjectsToGenerate: 1
-  spawnchance: 15
+  spawnchance: 3
 --- !u!114 &114436169105140052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,7 +147,7 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1910360332886006, guid: 081ca37201ead574aae2838b1bf7d93f,
     type: 2}
   maxObjectsToGenerate: 1
-  spawnchance: 30
+  spawnchance: 3
 --- !u!114 &114903000764113674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,4 +178,4 @@ MonoBehaviour:
   objectToSpawn: {fileID: 1932629773662952, guid: 00157a3cf83d7334cbbfe0694b283ec0,
     type: 2}
   maxObjectsToGenerate: 1
-  spawnchance: 15
+  spawnchance: 3

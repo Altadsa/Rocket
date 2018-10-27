@@ -17,3 +17,4 @@ MonoBehaviour:
 
     -Rocket Man'
   cost: 100
+  prefsKey: {fileID: 11400000, guid: adfaa91fa2d409f419f8f17a68204ba4, type: 2}

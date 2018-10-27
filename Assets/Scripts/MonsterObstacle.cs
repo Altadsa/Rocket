@@ -4,22 +4,48 @@ namespace Rocket
 {
     public class MonsterObstacle : Obstacle
     {
+        #region VARIABLES
+
         [SerializeField]
         Transform leftEdge;
 
         [SerializeField]
         Transform rightEdge;
 
-        float speed = 100.0f;
+        const float MIN_SPEED = 50.0f;
+        const float MAX_SPEED = 200.0f;
+
+        float speed;
 
         bool movingRight = true;
 
-        // Use this for initialization
+        #endregion
+
+        #region UNITY_LIFECYCLE
+
+        new private void Start()
+        {
+            base.Start();
+            speed = Random.Range(MIN_SPEED, MAX_SPEED);
+        }
 
         private void FixedUpdate()
         {
             MoveMonster();
         }
+
+        new private void OnTriggerEnter2D(Collider2D collision)
+        {
+            base.OnTriggerEnter2D(collision);
+            if (collision.GetComponent<ScreenEdge>())
+            {
+                movingRight = !movingRight;
+            }
+        }
+
+        #endregion
+
+        #region PRIVATE_FUNCTIONS
 
         private void MoveMonster()
         {
@@ -33,14 +59,7 @@ namespace Rocket
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            base.OnTriggerEnter2D(collision);
+        #endregion
 
-            if (collision.GetComponent<ScreenEdge>())
-            {
-                movingRight = !movingRight;
-            }
-        }
     } 
 }

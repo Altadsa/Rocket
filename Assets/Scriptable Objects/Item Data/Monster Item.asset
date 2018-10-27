@@ -15,3 +15,4 @@ MonoBehaviour:
   itemTitle: Space Monster
   itemDescription: You are one of them now.
   cost: 250
+  prefsKey: {fileID: 11400000, guid: 3fb49e0cf9376704b8b4b20b799c7bcd, type: 2}

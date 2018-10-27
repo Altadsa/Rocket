@@ -19,3 +19,4 @@ MonoBehaviour:
 
     -Queen: Don''t Stop Me Now'
   cost: 1000
+  prefsKey: {fileID: 11400000, guid: 6b0ec8a775796b44ebefa642e96873c5, type: 2}

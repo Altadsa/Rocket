@@ -20,6 +20,9 @@ namespace Rocket
         [SerializeField]
         int cost;
 
+        [SerializeField]
+        StringConstant prefsKey;
+
         #endregion
 
         #region GETTER FUNCTIONS
@@ -28,7 +31,7 @@ namespace Rocket
         public string ItemTitle { get { return itemTitle; } }
         public string ItemDescription { get { return itemDescription; } }
         public int Cost { get { return cost; } }
-        public bool IsUnlocked { get; set; }
+        public StringConstant PrefsKey {  get { return prefsKey; } }
 
         #endregion
 

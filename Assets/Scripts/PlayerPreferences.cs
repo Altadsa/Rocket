@@ -17,6 +17,16 @@ namespace Rocket
             }
         }
 
+        public int GetItem(StringConstant key)
+        {
+            return PlayerPrefs.GetInt(key.Value);
+        }
+
+        public void UnlockItem(StringConstant itemKey)
+        {
+            PlayerPrefs.SetInt(itemKey.Value, 1);
+        }
+
         private void OnRocketDeath()
         {
             AddStars(Rocket.starsCollected);

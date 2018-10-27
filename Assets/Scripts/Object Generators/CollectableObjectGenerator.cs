@@ -11,12 +11,16 @@ namespace Rocket
 
         protected override void Generate()
         {
-            if (spawnArea.HasPlayerItem() && !objectToSpawn.GetComponent<Star>()) { return; }
+            if (spawnArea.HasPlayerItem() || !objectToSpawn.GetComponent<Star>() && !SpawnArea.canSpawnItems) { return; }
             for (int i = 0; i < maxObjectsToGenerate; i++)
             {
                 if (Random.Range(0, spawnchance) == 0)
                 {
                     InstantiateGameObjectWithinArea();
+                    if (!objectToSpawn.GetComponent<Star>())
+                    {
+                        LevelManager.timeElapsed = 0.0f;
+                    }
                 }
             }
         }

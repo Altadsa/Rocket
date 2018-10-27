@@ -11,6 +11,8 @@ namespace Rocket
 
         #region VARIABLES
 
+        PlayerPreferences playerPreferences;
+
         ItemData itemData;
 
         [SerializeField]
@@ -23,7 +25,7 @@ namespace Rocket
         Text description;
 
         [SerializeField]
-        Text cost;
+        Text buttonText;
 
         [SerializeField]
         Button panelButton;
@@ -32,6 +34,7 @@ namespace Rocket
 
         public void Setup(ItemData data)
         {
+            playerPreferences = PlayerPreferences.CurrentPlayerPreferences;
             itemData = data;
             LoadItemData();
         }
@@ -47,45 +50,39 @@ namespace Rocket
 
         public void UnlockItem()
         {
-            int starCount = PlayerPreferences.CurrentPlayerPreferences.GetStars();
+            int starCount = playerPreferences.GetStars();
             PurchaseItemIfEnoughStars(starCount);
         }
 
         private void DisplayButtonText()
         {
-            if (itemData.IsUnlocked && !itemData.ItemSprite)
+            if (playerPreferences.GetItem(itemData.PrefsKey) == 0)
             {
-                cost.text = "Unlocked";
-                panelButton.enabled = false;
-            }
-            else if (itemData.IsUnlocked && Rocket.Instance != itemData.ItemSprite)
-            {
-                cost.text = "Equip";
-                panelButton.enabled = true;
-            }
-            else if (itemData.IsUnlocked && Rocket.Instance == itemData.ItemSprite)
-            {
-                cost.text = "Equipped";
-                panelButton.enabled = false;
+                buttonText.text = string.Format("Buy: {0}", itemData.Cost);
             }
             else
             {
-                cost.text = "Buy: " + itemData.Cost;
-                panelButton.enabled = true;
+                if (itemData.ItemSprite == Rocket.Instance.GetActiveSprite())
+                {
+                    buttonText.text = "Equipped";
+                }
+                else
+                {
+                    buttonText.text = "Equip";
+                }
             }
         }
 
         private void PurchaseItemIfEnoughStars(int starCount)
         {
-            if (itemData.IsUnlocked)
+            if (playerPreferences.GetItem(itemData.PrefsKey) ==  1)
             {
-                Rocket.Instance.SetRocketSprite(itemData.ItemSprite);
-                return;
+                Rocket.Instance.SetActiveSprite(itemData.ItemSprite);
             }
-            if (starCount > itemData.Cost)
+            else if (starCount > itemData.Cost)
             {
-                Rocket.Instance.SetRocketSprite(itemData.ItemSprite);
-                itemData.IsUnlocked = true;
+                playerPreferences.UnlockItem(itemData.PrefsKey);
+                Rocket.Instance.SetActiveSprite(itemData.ItemSprite);
                 PlayerPreferences.CurrentPlayerPreferences.AddStars(-itemData.Cost);
                 Store.CurrentStore.UpdateAvailableStars();
             }

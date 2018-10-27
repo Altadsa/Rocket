@@ -13,27 +13,51 @@ namespace Rocket
         Vector2Constant startPos;
 
         [SerializeField]
+        Sprite defaultSprite;
+
+        [SerializeField]
         Event onRocketDestroyed;
 
+        #region SINGLETON
+
         private static Rocket instance;
+        private static readonly object padlock = new object();
         public static Rocket Instance
         {
             get
             {
-                if (!instance)
+                lock (padlock)
                 {
-                    instance = FindObjectOfType<Rocket>();
+                    if (!instance)
+                    {
+                        instance = FindObjectOfType<Rocket>();
+                    }
+                    return instance;
                 }
-                return instance;
             }
-        }
+        } 
+
+        #endregion
 
         private void OnEnable()
         {
             transform.position = startPos.Value;
         }
 
-        public void SetRocketSprite(Sprite spriteToSet)
+        public Sprite GetActiveSprite()
+        {
+            Sprite activeSprite = GetComponentInChildren<SpriteRenderer>().sprite;
+            if (!activeSprite) { return null; }
+            return activeSprite;
+        }
+
+        public Sprite GetDefaultSprite()
+        {
+            if (!defaultSprite) { return null; }
+            return defaultSprite;
+        }
+
+        public void SetActiveSprite(Sprite spriteToSet)
         {
             GetComponentInChildren<SpriteRenderer>().sprite = spriteToSet;
         }

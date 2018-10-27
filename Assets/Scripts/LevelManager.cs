@@ -11,6 +11,31 @@ namespace Rocket
         [SerializeField]
         Event onGameStarted;
 
+        const float MIN_TIME_TO_RESPAWN = 20.0f;
+        const float MAX_TIME_TO_RESPAWN = 90.0f;
+
+        public static float timeElapsed;
+        float timeToRespawn = 30.0f;
+
+        private void Update()
+        {
+            IncrementTimeAndCheckIfCanSpawnItems();
+        }
+
+        private void IncrementTimeAndCheckIfCanSpawnItems()
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > timeToRespawn)
+            {
+                SpawnArea.canSpawnItems = true;
+                timeToRespawn = RandomizeRespawnTime();
+            }
+            else
+            {
+                SpawnArea.canSpawnItems = false;
+            }
+        }
+
         public void PauseGame()
         {
             Time.timeScale = 0;
@@ -26,6 +51,7 @@ namespace Rocket
             Rocket.Instance.gameObject.SetActive(true);
             onGameStarted.Raise();
             GenerateFirstSpawnArea();
+            timeElapsed = 0;
         }
 
         public void OnRocketDestroyed()
@@ -36,6 +62,12 @@ namespace Rocket
                 foreach (SpawnArea spawnArea in spawnAreas)
                 { GameObject.Destroy(spawnArea.gameObject); }
             }
+        }
+
+        private float RandomizeRespawnTime()
+        {
+            float newSpawnTime = Random.Range(MIN_TIME_TO_RESPAWN, MAX_TIME_TO_RESPAWN);
+            return newSpawnTime;
         }
 
         private void GenerateFirstSpawnArea()

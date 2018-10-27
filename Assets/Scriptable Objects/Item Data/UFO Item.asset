@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9dedb39bfa605419347a51ba27f045, type: 3}
   m_Name: UFO Item
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 46582925b954a51438e4cc1b0df9f0b0, type: 3}
+  itemSprite: {fileID: 21300000, guid: a519a07ccd022cf438790d4db74ae61c, type: 3}
   itemTitle: UFO
   itemDescription: This is a reskin for the Rocket. Crusie across space like an Extraterrestrial
     being.
   cost: 100
+  prefsKey: {fileID: 11400000, guid: 6fe104393dbf1554fa090eb733f878f0, type: 2}
