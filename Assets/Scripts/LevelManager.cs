@@ -12,7 +12,7 @@ namespace Rocket
         Event onGameStarted;
 
         const float MIN_TIME_TO_RESPAWN = 20.0f;
-        const float MAX_TIME_TO_RESPAWN = 90.0f;
+        const float MAX_TIME_TO_RESPAWN = 45.0f;
 
         public static float timeElapsed;
         float timeToRespawn = 30.0f;

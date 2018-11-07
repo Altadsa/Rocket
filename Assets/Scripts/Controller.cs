@@ -7,17 +7,20 @@ namespace Rocket
 {
     public class Controller : MonoBehaviour
     {
-        public float travelSpeed;
+        [SerializeField]
+        FloatConstant travelSpeed;
+        float runtimeSpeed;
 
         Rigidbody2D rocketRB;
 
         Matrix4x4 baseMatrix = Matrix4x4.identity;
 
-        public bool isTouchEnabled;
+        bool isTouchEnabled;
 
         void Start()
         {
             rocketRB = GetComponent<Rigidbody2D>();
+            runtimeSpeed = travelSpeed.Value;
         }
 
         private void FixedUpdate()
@@ -35,8 +38,8 @@ namespace Rocket
         public void ToggleTouch()
         {
             isTouchEnabled = !isTouchEnabled;
-            if (isTouchEnabled) { travelSpeed = 1000.0f; }
-            else { travelSpeed = 200.0f; }
+            if (isTouchEnabled) { runtimeSpeed = travelSpeed.Value * 6; }
+            else { runtimeSpeed = travelSpeed.Value; }
         }
 
         public void Calibrate()
@@ -58,7 +61,7 @@ namespace Rocket
 
         private void MoveUsingAccelerometer()
         {
-            Vector2 tilt = new Vector2(AdjustedAccelerometer.x * travelSpeed * Time.deltaTime, 0.0f);
+            Vector2 tilt = new Vector2(AdjustedAccelerometer.x * runtimeSpeed * Time.deltaTime, 0.0f);
             rocketRB.velocity = tilt;
         }
 
@@ -66,11 +69,11 @@ namespace Rocket
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                rocketRB.velocity = new Vector2(1.0f * travelSpeed * Time.deltaTime, 0.0f);
+                rocketRB.velocity = new Vector2(1.0f * runtimeSpeed * Time.deltaTime, 0.0f);
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                rocketRB.velocity = new Vector2(-1.0f * travelSpeed * Time.deltaTime, 0.0f);
+                rocketRB.velocity = new Vector2(-1.0f * runtimeSpeed * Time.deltaTime, 0.0f);
             }
             else
             {

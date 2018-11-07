@@ -3592,6 +3592,17 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 46582925b954a51438e4cc1b0df9f0b0,
         type: 3}
+    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
+        type: 2}
+      propertyPath: isTouchEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114325199178550488, guid: 28cd1ec9c57b263498add26130ab9c6e,
+        type: 2}
+      propertyPath: travelSpeed
+      value: 
+      objectReference: {fileID: 11400000, guid: 917cb62a558308c41bee6017c0e50b25,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28cd1ec9c57b263498add26130ab9c6e, type: 2}
   m_IsPrefabAsset: 0
