@@ -42,6 +42,7 @@ namespace Rocket
         private void OnEnable()
         {
             transform.position = startPos.Value;
+            starsCollected = 0;
         }
 
         public Sprite GetActiveSprite()
@@ -65,8 +66,8 @@ namespace Rocket
         public void DestroyRocket()
         {
             gameObject.SetActive(false);
-            starsCollected = 0;
             onRocketDestroyed.Raise();
+
         }
 
         public void AddItem(GameObject itemToAdd)
