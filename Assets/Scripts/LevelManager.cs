@@ -54,7 +54,7 @@ namespace Rocket
             timeElapsed = 0;
         }
 
-        public void OnRocketDestroyed()
+        public void OnGameOver()
         {
             SpawnArea[] spawnAreas = FindObjectsOfType<SpawnArea>();
             if (spawnAreas != null)

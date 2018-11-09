@@ -16,7 +16,7 @@ namespace Rocket
         Sprite defaultSprite;
 
         [SerializeField]
-        Event onRocketDestroyed;
+        Event onGameOver;
 
         #region SINGLETON
 
@@ -66,8 +66,8 @@ namespace Rocket
         public void DestroyRocket()
         {
             gameObject.SetActive(false);
-            onRocketDestroyed.Raise();
-
+            PlayerPreferences.CurrentPlayerPreferences.AddStars(starsCollected);
+            onGameOver.Raise();
         }
 
         public void AddItem(GameObject itemToAdd)
